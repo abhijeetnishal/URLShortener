@@ -1,5 +1,6 @@
 const client = require('../model/dbconnect');
 const urlSchema = require('../model/urlSchema');
+const validateUrl = require('../util/util');
 
 //CRUD operation
 const getAllUrls = async (req, res) => {

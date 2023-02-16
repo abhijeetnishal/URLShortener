@@ -270,7 +270,7 @@ obtained from proxying the request to http://api.duckduckgo.com/.
     ```
 
 
-### Database:
+## Database:
 
 * Now there are 2 approaches we can follow from here.
     1. Write our Data Access Object(DAO) for our models from scratch.
@@ -283,3 +283,28 @@ obtained from proxying the request to http://api.duckduckgo.com/.
 * npm install jugglingdb@0.2.x jugglingdb-redis@latest
 * jugglingdb is cross ORM for nodejs and has support for a variety of databases via adapters.
 * Although in Redis we don’t have any concept of tables or collections, jugglingdb allows us to define Models in Redis too like just for any other database. 
+
+
+## Create a Helper Function To Validate Url Links
+* We now have a schema in place that allows us to receive and store URLs in our database. 
+* However, URLs entered into the application must be validated. 
+* To do this, we will write a helper function to assist us in validating any URL submitted by users.
+* Our helper function will be created in a new folder. Create a Util folder in the application’s root directory, within that folder, we will create a util.js file.
+
+* Add the following code to the Util/util.js file.
+    ```js
+    function validateUrl(value) {
+    var urlPattern = new RegExp('^(https?:\\/\\/)?'+ // validate protocol
+            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // validate domain name
+            '((\\d{1,3}\\.){3}\\d{1,3}))'+ // validate OR ip (v4) address
+            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // validate port and path
+            '(\\?[;&a-z\\d%_.~+=-]*)?'+ // validate query string
+            '(\\#[-a-z\\d_]*)?$','i');
+
+        return !!urlPattern.test(value);
+    }
+
+    module.exports = { validateUrl };
+    ```
+* The code above uses RegExp to examine and validate any URL passed into our application. 
+* Checking if the URL entered is following HTTP protocol if the syntax of a URL domain name and IP address is valid etc.
