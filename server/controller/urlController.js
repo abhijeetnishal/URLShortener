@@ -68,7 +68,11 @@ const updateUrl = async (req, res) => {
         })
       
         const urlId = await urlRepository.save(url)
-        res.body = { urlId, url }
+        //res.body = { urlId, url }
+
+        const shortUrl = url.shortURL;
+        const originalUrl = url.originalURL;
+        res.status(200).json({shortUrl, originalUrl});
     }
     catch(error){
         console.log(error);
@@ -81,7 +85,8 @@ const deleteUrl = async (req, res) => {
         const urlId = req.params.id
         const urlRepository = client.fetchRepository(urlSchema)
         await urlRepository.remove(urlId)
-        res.body = { urlId }
+        //res.body = { urlId }
+        res.status(200).json({message:'deleted'});
     }
     catch(error){
         console.log(error);

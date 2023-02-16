@@ -84,11 +84,12 @@ Object.keys(config.proxies).forEach((path) => {
 
 
 
+app.use(express.json());
 
 const client = require('./model/dbconnect');
 
 const urlRouter = require('./routes/urlRoutes')
-app.use('/', urlRouter);
+app.use(urlRouter);
   
 //create a server
 app.listen(port, (req, res) => {
