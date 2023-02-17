@@ -272,39 +272,64 @@ obtained from proxying the request to http://api.duckduckgo.com/.
 
 ## Database:
 
-* Now there are 2 approaches we can follow from here.
-    1. Write our Data Access Object(DAO) for our models from scratch.
-       Requires an understanding of Redis commands to simulate CRUD operations but offers great flexibility.
+* Use redis-om to create connection to redis and perform CRUD.
 
-    2. Use an ORM to model our data.
-       Easy to use as it hides away the underlying complexity and exposes an easy interface to interact with Redis.
-       Here we will be going on with the 2nd approach(ORM). 
-       It will help us to create models and perform the operations on Redis as if we are using a traditional SQL or NoSQL database. Although there are a bunch of ORMs to choose from like Waterline, Nohm, etc we will be using JugglingDB.
-* npm install jugglingdb@0.2.x jugglingdb-redis@latest
-* jugglingdb is cross ORM for nodejs and has support for a variety of databases via adapters.
-* Although in Redis we don’t have any concept of tables or collections, jugglingdb allows us to define Models in Redis too like just for any other database. 
+    ```js
+    //install redis-om using npm to use redis db. 
+    const url = process.env.URL;
+    const { Client } = require('redis-om');
+
+    const client = new Client();
+
+    if(client.open(url))
+        console.log('Connected to Redis DB');
+    else    
+        console.log('error connecting Redis DB');
+
+    module.exports = client;
+
+    ```
 
 
-## Create a Helper Function To Validate Url Links
+## To Validate Url Links
 * We now have a schema in place that allows us to receive and store URLs in our database. 
 * However, URLs entered into the application must be validated. 
-* To do this, we will write a helper function to assist us in validating any URL submitted by users.
-* Our helper function will be created in a new folder. Create a Util folder in the application’s root directory, within that folder, we will create a util.js file.
-
-* Add the following code to the Util/util.js file.
+* There's a package called valid-url install using command -> npm install valid-url --save
+* Add the following code
     ```js
-    function validateUrl(value) {
-    var urlPattern = new RegExp('^(https?:\\/\\/)?'+ // validate protocol
-            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // validate domain name
-            '((\\d{1,3}\\.){3}\\d{1,3}))'+ // validate OR ip (v4) address
-            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // validate port and path
-            '(\\?[;&a-z\\d%_.~+=-]*)?'+ // validate query string
-            '(\\#[-a-z\\d_]*)?$','i');
+    var validUrl = require('valid-url');
 
-        return !!urlPattern.test(value);
+    var url = "http://bla.com"
+    if (validUrl.isUri(url)){
+        console.log('Looks like an URI');
+    } 
+    else {
+        console.log('Not a URI');
     }
-
-    module.exports = { validateUrl };
     ```
 * The code above uses RegExp to examine and validate any URL passed into our application. 
 * Checking if the URL entered is following HTTP protocol if the syntax of a URL domain name and IP address is valid etc.
+
+## Generating a 7-digit unique base 62 encoding string:
+* This function uses the crypto module to generate 7 random bytes, which are then converted to a base 62 encoding string using 
+   the charset 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz. 
+* The resulting string is guaranteed to be 7 characters long, and can represent 62^7 (3.5 * 10^12) possible values.
+* Note that you'll need to import the crypto module at the beginning of your code, like this: const crypto = require("crypto");
+
+    ```js
+    function generateBase62String() {
+    const charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    const randomValues = crypto.randomBytes(7);
+    let result = "";
+
+    for (let i = 0; i < 7; i++) {
+        const index = randomValues[i] % 62;
+        result += charset.charAt(index);
+    }
+
+    return result;
+    }
+    ```
+    
+
+

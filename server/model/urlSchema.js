@@ -4,7 +4,7 @@ class URL extends Entity {}
 
 const urlSchema = new Schema(URL, {
   originalURL: { type: 'string' },
-  shortURL: { type: 'string' },
+  shortURL: { type: 'string', textSearch: true},
 });
 
 module.exports = urlSchema;

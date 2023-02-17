@@ -28,6 +28,7 @@
     "redis": "^4.6.4",
     "redis-om": "^0.3.6",
     "response-time": "^2.3.2",
+    "valid-url": "^1.0.9",
     "winston": "^3.8.2"
   }
 }

@@ -1,6 +1,4 @@
-//install redis using npm to use redis db. using npm install redis.
-const dotenv = require('dotenv');
-dotenv.config();
+//install redis-om using npm to use redis db. 
 const url = process.env.URL;
 
 const { Client } = require('redis-om');
