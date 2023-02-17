@@ -270,7 +270,7 @@ obtained from proxying the request to http://api.duckduckgo.com/.
     ```
 
 
-## Database:
+## Database
 
 * Use redis-om to create connection to redis and perform CRUD.
 
@@ -289,6 +289,21 @@ obtained from proxying the request to http://api.duckduckgo.com/.
     module.exports = client;
 
     ```
+## Database schema in Redis
+* Install redis-om using npm install redis-om command in terminal.
+    ```js
+    const { Entity, Schema } = require('redis-om');
+
+    class URL extends Entity {}
+
+    const urlSchema = new Schema(URL, {
+    originalURL: { type: 'string' },
+    shortURL: { type: 'string', textSearch: true},
+    });
+
+    module.exports = urlSchema;
+    ```
+
 
 
 ## To Validate Url Links
