@@ -1,5 +1,4 @@
 const client = require('../model/dbconnect');
-const urlSchema = require('../model/urlSchema');
 const validUrl = require('valid-url');
 const uniqueString = require('../utils/utils')
 
@@ -19,7 +18,7 @@ const uniqueString = require('../utils/utils')
 //         res.status(500).json({message:"something went wrong"});
 //     }
 // }
-
+ 
 const getSpecificUrl = async (req, res) => {
     try{
         const shortURL = req.params.shortURL;

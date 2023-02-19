@@ -2,15 +2,16 @@
   "name": "server",
   "version": "1.0.0",
   "description": "urlShortener backend",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "test": "node test.js"
+    "dev": "nodemon server.js",
+    "test": "node ./node_modules/mocha/bin/mocha"
   },
   "author": "Abhijeet Kumar",
   "license": "ISC",
   "dependencies": {
     "@koa/router": "^12.0.0",
+    "chai": "^4.3.7",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
@@ -24,6 +25,7 @@
     "jugglingdb-redis": "^0.0.2-2",
     "koa": "^2.14.1",
     "koa-body": "^6.0.1",
+    "mocha": "^10.2.0",
     "nodemon": "^2.0.20",
     "redis": "^4.6.4",
     "redis-om": "^0.3.6",
