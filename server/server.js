@@ -28,7 +28,7 @@ app.use(rateLimit(config.rate));
 
 app.use(express.json());
 
-
+require('./model/dbconnect')
 const urlRouter = require('./routes/urlRoutes')
 app.use(urlRouter);
   
