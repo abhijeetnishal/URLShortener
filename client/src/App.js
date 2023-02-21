@@ -9,7 +9,7 @@ function App() {
   const [shortUrl, setShortUrl] = useState('');
   const handleSubmit = async(e) => {
       e.preventDefault();
-      const response = await fetch('http://localhost:4000/', {
+      const response = await fetch('https://urlsrtner.onrender.com/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -19,7 +19,7 @@ function App() {
 
     //console.log(response);
     const data = await response.json();
-    console.log(data);
+    
     setShortUrl(data);
   }
 
@@ -41,16 +41,17 @@ function App() {
           </div>
         </div>
         <div className='hiddenContainer'>
-        {shortUrl ? (
+        {shortUrl==='Please Enter a Valid URL' ?(
+          <div className='hiddenshortedUrl'>Enter Valid URL</div>
+        ): shortUrl!=='' ?(
         <div className='shortedUrl'>
-          <div className='shortUrlText'>Short Link: </div> 
-          <div className='sUrl'> {shortUrl}</div>
-          <img className='copy' src={copy} alt='Logo'/>
+        <div className='shortUrlText'>Short Link: </div> 
+        <div className='sUrl'> {shortUrl}</div>
+        <img className='copy' src={copy} alt='Logo'/>
         </div>
-        ):
-        <div className='hiddenshortedUrl'>
-        <div className='sUrl'> {shortUrl} </div>
-        </div>
+        ):(
+          <div className='empty'></div>
+        )
         }
         </div>
     </div>

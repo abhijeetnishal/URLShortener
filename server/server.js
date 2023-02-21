@@ -4,6 +4,7 @@ const express = require('express');
 //create express app 
 const app = express();
 
+//To access data from .env file
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -31,7 +32,6 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-require('./model/dbconnect')
 const urlRouter = require('./routes/urlRoutes')
 app.use(urlRouter);
   

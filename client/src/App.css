@@ -121,7 +121,7 @@
 }
 
 .shortBtn{
-  margin-left: -134px;
+  margin-left: -132px;
 
   gap: 8px;
 
@@ -187,6 +187,7 @@
 .sUrl{
   width: 193px;
   height: 27px;
+  overflow: hidden ;
 
   font-family: 'Open Sans';
   font-style: normal;
@@ -203,6 +204,7 @@
   right: 16.67%;
   top: 8.33%;
   bottom: 8.33%;
+  padding-left: 10px;
 }
 
 .hiddenshortedUrl{
@@ -216,5 +218,12 @@
   line-height: 27px;
 
   color: #006DF0;
+  padding-bottom: 34px;
+}
+
+.empty{
+  width: 193px;
+  height: 27px;
+  
   padding-bottom: 34px;
 }
