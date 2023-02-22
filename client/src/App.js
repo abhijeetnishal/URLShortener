@@ -41,13 +41,15 @@ function App() {
           </div>
         </div>
         <div className='hiddenContainer'>
-        {shortUrl==='Please Enter a Valid URL' ?(
-          <div className='hiddenshortedUrl'>Enter Valid URL</div>
-        ): shortUrl!=='' ?(
+        {shortUrl==='Please Enter a Valid URL' ? (
+          <div className='hiddenshortedUrl'>enter a valid URL</div>
+        ): shortUrl!=='' ? (
         <div className='shortedUrl'>
         <div className='shortUrlText'>Short Link: </div> 
         <div className='sUrl'> {shortUrl}</div>
-        <img className='copy' src={copy} alt='Logo'/>
+        <button className='copybtn' onClick={() => {navigator.clipboard.writeText(shortUrl)}}>
+          <img className='copy' src={copy} alt='Logo'/> 
+        </button>
         </div>
         ):(
           <div className='empty'></div>

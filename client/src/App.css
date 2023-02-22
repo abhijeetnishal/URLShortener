@@ -122,8 +122,8 @@
 
 .shortBtn{
   margin-left: -132px;
-
   gap: 8px;
+  cursor: pointer;
 
   width: 130px;
   height: 48px;
@@ -157,7 +157,7 @@
 
   box-sizing: border-box;
 
-  width: 350px;
+  width: 458px;
   height: 56px;
   left: 458px;
   top: 551px;
@@ -185,7 +185,7 @@
 }
 
 .sUrl{
-  width: 193px;
+  width: 314px;
   height: 27px;
   overflow: hidden ;
 
@@ -207,17 +207,24 @@
   padding-left: 10px;
 }
 
+.copybtn{
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
 .hiddenshortedUrl{
   width: 193px;
   height: 27px;
 
-  font-family: 'Open Sans';
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-style: normal;
   font-weight: 600px;
   font-size: 20px;
   line-height: 27px;
 
-  color: #006DF0;
+  color: #ec3636;
   padding-bottom: 34px;
 }
 
