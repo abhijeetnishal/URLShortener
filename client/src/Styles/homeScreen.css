@@ -125,12 +125,12 @@
   }
   
   .shortBtn{
-    margin-left: -132px;
+    margin-left: -131px;
     gap: 8px;
     cursor: pointer;
   
     width: 130px;
-    height: 48px;
+    height: 54px;
     left: 15px;
     top: 4px;
   
@@ -379,7 +379,7 @@ Responsive css for smaller device.
     }
     
     .shortBtn{
-      margin-left: -91px;
+      margin-left: -90px;
       gap: 8px;
       cursor: pointer;
     
@@ -415,7 +415,7 @@ Responsive css for smaller device.
     
       box-sizing: border-box;
     
-      width: 370px;
+      width: 372px;
       height: 46px;
       left: 458px;
       top: 551px;
@@ -427,8 +427,8 @@ Responsive css for smaller device.
     }
     
     .shortUrlText{
-      width: 120px;
-      height: 12px;
+      width: 90px;
+      height: 16px;
     
       font-family: 'Open Sans';
       font-style: normal; 
@@ -441,8 +441,8 @@ Responsive css for smaller device.
     }
     
     .sUrl{
-      width: 300px;
-      height: 24px;
+      width: 230px;
+      height: 26px;
       overflow: hidden ;
     
       font-family: 'Open Sans';
