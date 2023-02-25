@@ -24,13 +24,13 @@
 
 ## Project Installation Process:
 * Clone the repo using cammand:
-  git clone https://github.com/abhijeetnishal/URLShortener.git
+  - git clone https://github.com/abhijeetnishal/URLShortener.git
 * Move to server directory:
-  cd server
+  - cd server
 * To install dependencies run the cammand:
-  npm install
+  - npm install
 * Start the server using command:
-  npm run dev
+  - npm run dev
 
 
 
