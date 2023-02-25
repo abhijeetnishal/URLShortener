@@ -22,6 +22,15 @@
 * Create database after taking free subscription.
 * Download client application Medis to access database.
 
-## 
+## Project Installation Process:
+* Clone the repo using cammand:
+  git clone https://github.com/abhijeetnishal/URLShortener.git
+* Move to server directory:
+  cd server
+* To install dependencies run the cammand:
+  npm install
+* Start the server using command:
+  npm run dev
+
 
 
