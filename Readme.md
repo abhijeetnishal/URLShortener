@@ -29,8 +29,12 @@
   - cd server
 * To install dependencies run the cammand:
   - npm install
+* Now go to .env file and paste your redis url from redis cloud.
 * Start the server using command:
   - npm run dev
-
+* Now move to client folder:
+  - cd ../client
+* start the react app using command:
+  - npm start
 
 
