@@ -13,7 +13,7 @@ function HomeScreen() {
     const handleSubmit = async(e) => {
         setIsLoading(true);
         e.preventDefault();
-        const response = await fetch('https://urlsrtner.onrender.com/', {
+        const response = await fetch('https://urlsrt.onrender.com/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
