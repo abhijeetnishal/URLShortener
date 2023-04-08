@@ -10,15 +10,25 @@ function HomeScreen() {
   
     const [originalUrl, setUrl] = useState('');
     const [shortUrl, setShortUrl] = useState('');
+
+    (async function startServer(){
+      await fetch('https://urlsrt.vercel.app/',{
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+    })();
+
     const handleSubmit = async(e) => {
         setIsLoading(true);
         e.preventDefault();
-        const response = await fetch('https://urlsrt.onrender.com/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify( {originalUrl} ),
+        const response = await fetch('https://urlsrt.vercel.app/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify( {originalUrl} ),
       });
   
       //console.log(response);
