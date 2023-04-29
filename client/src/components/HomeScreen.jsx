@@ -1,5 +1,5 @@
-import '../Styles/homeScreen.css';
-import LoadingSpinner from "./LoadingSpinner";
+import '../styles/homeScreen.css';
+import Loading from "./Loading";
 import link from '../assets/Vector.png'
 import http from '../assets/http.png'
 import copy from '../assets/copy.png'
@@ -47,33 +47,35 @@ function HomeScreen() {
             </div>
           </div>
           <div className='mainClass'>
-            <img className='http' src={http} alt="Logo" />
-            <div className='text-1'>Tired of big URLs ?</div>
-            <div className='text-2'>Make Your<div className='url'>URL</div> Short </div>
-            <div className='containerClass'>
-              <input className='originalUrlContainer' type="text" value={originalUrl} onChange={(e) => setUrl(e.target.value)} placeholder='Paste a link to shorten it'></input>
-              <button type='submit' className='shortBtn' onClick={handleSubmit} disabled={isLoading}>Shorten It!</button>
+            <div className='sub-main-container'>
+              <img className='http' src={http} alt="Logo" />
+              <div className='text-1'>Tired of big URLs ?</div>
+              <div className='text-2'>Make Your<div className='url'>URL</div> Short </div>
+              <div className='containerClass'>
+                <input className='originalUrlContainer' type="text" value={originalUrl} onChange={(e) => setUrl(e.target.value)} placeholder='Paste a link to shorten it'></input>
+                <button type='submit' className='shortBtn' onClick={handleSubmit} disabled={isLoading}>Shorten It!</button>
+              </div>
             </div>
-          </div>
-          <div className='hiddenContainer'>
-          {isLoading ? (<LoadingSpinner/>) : (
-          <div className='hiddenContainer'>
-          {shortUrl==='Please Enter a Valid URL' ? (
-            <div className='hiddenshortedUrl'>enter a valid URL</div>
-          ): shortUrl!=='' ? (
-          <div className='shortedUrl'>
-          <div className='shortUrlText'>Short Link: </div> 
-          <div className='sUrl'> {shortUrl}</div>
-          <button className='copybtn' onClick={() => {navigator.clipboard.writeText(shortUrl)}}>
-            <img className='copy' src={copy} alt='Logo'/> 
-          </button>
-          </div>
-          ):(
-            <div className='empty'></div>
-          )
-          }
-          </div>)
-          }
+              <div className='hiddenContainer'>
+              {isLoading ? (<Loading/>) : (
+              <div className='hiddenContainer'>
+              {shortUrl==='Please Enter a Valid URL' ? (
+                <div className='hiddenshortedUrl'>enter a valid URL</div>
+              ): shortUrl!=='' ? (
+              <div className='shortedUrl'>
+              <div className='shortUrlText'>Short Link: </div> 
+              <div className='sUrl'> {shortUrl}</div>
+              <button className='copybtn' onClick={() => {navigator.clipboard.writeText(shortUrl)}}>
+                <img className='copy' src={copy} alt='Logo'/> 
+              </button>
+              </div>
+              ):(
+                <div className='empty'></div>
+              )
+              }
+              </div>)
+              }
+              </div>
           </div>
       </div>
     );

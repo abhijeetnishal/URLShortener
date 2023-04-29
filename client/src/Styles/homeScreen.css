@@ -1,47 +1,35 @@
-*{
-  overflow: hidden;
+.homeScreen{
+  width: 100%;
+  height: 100vh;
+  font-family: 'Open Sans';
 }
-
 .headerClass{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
     height: 80px;
-    left: 0px;
-    top: 0px;
-    width:auto;
+    width: 100%;
     background: #FFFFFF;
     box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.1);
   }
   
   .subheader{
+    padding-left: 20px;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    justify-content: space-between;
+    align-items: center;
+    width: 170px;
   }
   
   .link{
-    padding-left: 46.34px;
-    padding-right: 11.34px;
-    padding-top: 28.34px;
-    padding-bottom: 26.34px;
-  
     background-color: linear-gradient(180deg, #2637CF 0%, rgba(112, 4, 150, 0.21) 100%);
   } 
   
   .shorturl{
-    padding-top: 24px;
-    padding-bottom: 23px;
-    
-    height: 33px;
-    width: 132px;
-    left: 40px;
-    top: 0px;
-  
-  
-    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 600px;
     font-size: 24px;
-    line-height: 33px;
-    /* identical to box height */
   
     color: #005A93;
   }
@@ -49,63 +37,61 @@
   .mainClass{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    width: 100%;
+    height: calc(100vh - 80px);
+    padding-bottom: 60px;
   
     background-color: #ECECEC;
+  }
+  .sub-main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 300px;
   }
   
   .http{
     width: 111px;
     height: 71px;
-    left: 664px;
-    top: 263px;
-    padding-top: 130px;
-    padding-bottom: 24px;
   }
   
   .text-1{
     width: 177px;
     height: 27px;
-    left: 631px;
-    top: 358px;
   
-    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 600px;
     font-size: 20px;
-    line-height: 27px;
   
     color: #FCAF26;
-    padding-bottom: 5px;
   }
   
   .text-2{
     width: 382px;
     height: 49px;
-    left: 529px;
-    top: 390px;
     display: flex;
     flex-direction: row;
   
-    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 700;
     font-size: 36px;
     line-height: 49px;
     color: #2E2E2E;
-  
-    padding-bottom: 80px;
   }
   
   .url{
     color: rgba(0, 109, 240, 1);
-    padding-left: 7px;
-    padding-right: 7px;
+    padding: 0px 10px;
   }
   
   .containerClass{
     display: flex;
     flex-direction: row;
+    justify-content: center;
     align-items: center;
     padding-bottom: 66px;
   }
@@ -115,33 +101,27 @@
   
     width: 524px;
     height: 56px;
-    left: 458px;
-    top: 551px;
   
     background-color: #FFFFFF;
-    border: 1px solid #B898D8;
+    border: 2px solid #B898D8;
     border-radius: 40px;
   
   }
   
   .shortBtn{
     margin-left: -131px;
-    gap: 8px;
     cursor: pointer;
   
     width: 130px;
     height: 54px;
-    left: 15px;
-    top: 4px;
   
     background: linear-gradient(280.11deg, #0042ED -16.88%, #AD8DD5 100%);
     border-radius: 24px;
+    border: 1px solid #0042ED;
   
-    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 600px;
     font-size: 16px;
-    line-height: 26px;
     color: #FFFFFF;
   }
   
@@ -149,9 +129,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-  
-    background-color: #ECECEC;
-    padding-bottom: 170px;
+
   }
   
   .shortedUrl{
@@ -161,39 +139,29 @@
   
     box-sizing: border-box;
   
-    width: 458px;
+    width: 100%;
     height: 56px;
-    left: 458px;
-    top: 551px;
   
     background-color: rgba(255, 255, 255, 1);
     border: 1px solid rgba(255, 255, 255, 1);;
     border-radius: 40px;
-  
-    margin-bottom: 8px;
   }
   
   .shortUrlText{
     width: 84px;
     height: 22px;
   
-    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 600px;
     font-size: 16px;
-    line-height: 22px; 
   
     color: #2E2E2E;
-  
-    padding-left: 20px;
   }
   
   .sUrl{
     width: 314px;
     height: 27px;
-    overflow: hidden ;
-  
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600px;
     font-size: 20px;
@@ -222,7 +190,6 @@
     width: 193px;
     height: 27px;
   
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-style: normal;
     font-weight: 600px;
     font-size: 20px;
@@ -250,153 +217,55 @@ Responsive css for smaller device.
     .headerClass{
       width: 410px;
       height: 56px;
-      left: 0px;
-      top: 0px;
-      background: #FFFFFF;
-      box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.1);
     }
     
     .subheader{
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
     }
     
     .link{
       height: 19.99px;
       width: 19.99px;
-      left: 2.5px;
-      top: 21.49px;
-      border-radius: 0px;
-
-
-      padding-left: 10.5px;
-      padding-right: 10.5px;
-      padding-top: 17.5px;
-      padding-bottom: 18.5px;
-      
-      background-color: linear-gradient(180deg, #2637CF 0%, rgba(112, 4, 150, 0.21) 100%);
     } 
     
     .shorturl{
-      padding-top: 12px;
-      padding-bottom: 17px;
-      
       width: 135px;
       height: 27px;
-      left: 40px;
-      top: 0px;
-    
-    
-      font-family: 'Open Sans';
-      font-style: normal;
-      font-weight: 600px;
-      font-size: 24px;
-      line-height: 33px;
-      /* identical to box height */
-    
-      color: #005A93;
     }
     
     .mainClass{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    
-      background-color: #ECECEC;
     }
     
     .http{
       width: 100px;
       height: 64px;
-      left: 138px;
-      top: 175px;
-      padding-top: 110px;
-      padding-bottom: 30px;
     }
     
     .text-1{
       width: 177px;
       height: 27px;
-      left: 631px;
-      top: 358px;
-    
-      font-family: 'Open Sans';
-      font-style: normal;
-      font-weight: 600px;
-      font-size: 20px;
-      line-height: 27px;
-    
-      color: #FCAF26;
-      padding-bottom: 8px;
     }
     
     .text-2{
       width: 380px;
       height: 41px;
-      left: 529px;
-      top: 390px;
-      display: flex;
-      flex-direction: row;
-    
-      font-family: 'Open Sans';
-      font-style: normal;
-      font-weight: 600px;
-      font-size: 30px;
-      line-height: 44px;
-      color: #2E2E2E;
-    
-      padding-bottom: 60px;
-      padding-left: 65px;
     }
     
     .url{
-      color: rgba(0, 109, 240, 1);
-      padding-left: 4px;
-      padding-right: 4px;
     }
     
     .containerClass{
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      padding-bottom: 40px;
-      padding-right: 25px;
     }
     
     .originalUrlContainer{
-      box-sizing: border-box;
-    
-      width: 290px;
-      height: 36px;
-      left: 458px;
-      top: 551px;
-    
-      background-color: #FFFFFF;
-      border: 1px solid #B898D8;
-      border-radius: 40px;
     
     }
     
     .shortBtn{
       margin-left: -90px;
-      gap: 8px;
-      cursor: pointer;
     
       width: 90px;
       height: 35px;
-      left: 15px;
-      top: 4px;
-    
-      background: linear-gradient(280.11deg, #0042ED -16.88%, #AD8DD5 100%);
-      border-radius: 24px;
-    
-      font-family: 'Open Sans';
-      font-style: normal;
-      font-weight: 600px;
-      font-size: 16px;
-      line-height: 26px;
-      color: #FFFFFF;
+      
     }
     
     .hiddenContainer{
@@ -474,15 +343,7 @@ Responsive css for smaller device.
     .hiddenshortedUrl{
       width: 193px;
       height: 27px;
-    
-      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      font-style: normal;
-      font-weight: 600px;
-      font-size: 20px;
-      line-height: 27px;
-    
-      color: #ec3636;
-      padding-bottom: 34px;
+
     }
     
     .empty{
@@ -495,7 +356,6 @@ Responsive css for smaller device.
   }
 
 ::placeholder{
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 15px;
   padding-left: 7px;
 }
