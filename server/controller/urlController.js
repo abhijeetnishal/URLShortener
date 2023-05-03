@@ -30,7 +30,6 @@ const createUrl = async (req, res) => {
     //receives json data from client
     const originalUrl = req.body.originalUrl;
 
-
     //validate the original url received from client
     if(validUrl.isUri(originalUrl)){
         try{

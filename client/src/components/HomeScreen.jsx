@@ -12,7 +12,7 @@ function HomeScreen() {
     const [shortUrl, setShortUrl] = useState('');
 
     (async function startServer(){
-      await fetch('https://urlsrt.vercel.app/',{
+      await fetch('http://localhost:4000/',{
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ function HomeScreen() {
     const handleSubmit = async(e) => {
         setIsLoading(true);
         e.preventDefault();
-        const response = await fetch('https://urlsrt.vercel.app/', {
+        const response = await fetch('http://localhost:4000/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ function HomeScreen() {
               <div className='shortedUrl'>
               <div className='shortUrlText'>Short Link: </div> 
               <div className='sUrl'> {shortUrl}</div>
-              <button className='copybtn' onClick={() => {navigator.clipboard.writeText(shortUrl)}}>
+              <button title='Copy' className='copybtn' onClick={() => {navigator.clipboard.writeText(shortUrl)}}>
                 <img className='copy' src={copy} alt='Logo'/> 
               </button>
               </div>

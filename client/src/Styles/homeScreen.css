@@ -12,7 +12,6 @@
     background: #FFFFFF;
     box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.1);
   }
-  
   .subheader{
     padding-left: 20px;
     display: flex;
@@ -41,8 +40,6 @@
     align-items: center;
     width: 100%;
     height: calc(100vh - 80px);
-    padding-bottom: 60px;
-  
     background-color: #ECECEC;
   }
   .sub-main-container{
@@ -128,8 +125,9 @@
   .hiddenContainer{
     display: flex;
     flex-direction: column;
-    align-items: center;
-
+    justify-content: center;
+    width: 410px;
+    height: 50px;
   }
   
   .shortedUrl{
@@ -140,222 +138,117 @@
     box-sizing: border-box;
   
     width: 100%;
-    height: 56px;
-  
+    height: 50px;
+    padding: 0px 10px;
     background-color: rgba(255, 255, 255, 1);
     border: 1px solid rgba(255, 255, 255, 1);;
     border-radius: 40px;
   }
   
   .shortUrlText{
-    width: 84px;
-    height: 22px;
-  
+    width: 95px;
+    padding-right:0.1px;
     font-style: normal;
     font-weight: 600px;
-    font-size: 16px;
-  
+    font-size: 18px;
     color: #2E2E2E;
   }
   
   .sUrl{
     width: 314px;
-    height: 27px;
-
+    padding-left: -1px;
     font-style: normal;
     font-weight: 600px;
-    font-size: 20px;
-    line-height: 27px;
+    font-size: 18px;
   
     color: #006DF0;
-    
   }
-  
-  .copy{
-    left: 12.5%;
-    right: 16.67%;
-    top: 8.33%;
-    bottom: 8.33%;
-    padding-left: 10px;
-  }
-  
   .copybtn{
     padding: 0;
     border: none;
     background: none;
-    cursor: pointer;
   }
-  
   .hiddenshortedUrl{
-    width: 193px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     height: 27px;
   
     font-style: normal;
     font-weight: 600px;
     font-size: 20px;
-    line-height: 27px;
   
     color: #ec3636;
-    padding-bottom: 34px;
   }
-  
-  .empty{
-    width: 193px;
-    height: 27px;
-    
-    padding-bottom: 34px;
+  ::placeholder{
+    font-size: 19px;
+    padding-left: 7px;
   }
-
-
 
 /* 
 Responsive css for smaller device.
 */
-  @media only screen and (max-width: 480px){
+  @media only screen and (max-width: 550px){
     /* CSS rules for standard mobile device */
 
     .headerClass{
-      width: 410px;
+      width: 550px;
       height: 56px;
     }
-    
-    .subheader{
-    }
-    
-    .link{
-      height: 19.99px;
-      width: 19.99px;
-    } 
-    
-    .shorturl{
-      width: 135px;
-      height: 27px;
-    }
-    
     .mainClass{
+      width: 550px;
+      height: calc(100vh - 56px);
     }
-    
-    .http{
-      width: 100px;
-      height: 64px;
-    }
-    
-    .text-1{
-      width: 177px;
-      height: 27px;
-    }
-    
     .text-2{
-      width: 380px;
-      height: 41px;
+      width: 250px;
+      height: 49px;
+      font-weight: 700;
+      font-size: 25px;
+      line-height: 49px;
     }
-    
     .url{
+      padding: 0px 5px;
     }
-    
     .containerClass{
+      width: 320px;
+      height: 40px;
     }
     
     .originalUrlContainer{
-    
+      width: 100%;
     }
-    
     .shortBtn{
-      margin-left: -90px;
+      margin-left: -101px;
     
-      width: 90px;
-      height: 35px;
-      
+      width: 100px;
+      height: 54px;
+  
+      font-weight: 600px;
+      font-size: 16px;
     }
     
     .hiddenContainer{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    
-      background-color: #ECECEC;
-      padding-bottom: 160px;
+      width: 320px;
+      height: 50px;
     }
-    
     .shortedUrl{
-      display: flex;
-      flex-direction: row;
-      align-items:center;
-    
-      box-sizing: border-box;
-    
-      width: 372px;
-      height: 46px;
-      left: 458px;
-      top: 551px;
-    
-      background-color: rgba(255, 255, 255, 1);
-      border: 1px solid rgba(255, 255, 255, 1);;
-      border-radius: 40px;
-    
+      width: 100%;
+      height: 50px;
+      padding: 0px 10px;
     }
     
     .shortUrlText{
-      width: 90px;
-      height: 16px;
-    
-      font-family: 'Open Sans';
-      font-style: normal; 
-      font-weight: 500px; 
-      font-size: 18px; 
-      line-height: 18px; 
-    
-      color: #2E2E2E;
-
+      font-weight: 500px;
+      font-size: 14px;
     }
-    
     .sUrl{
-      width: 230px;
-      height: 26px;
-      overflow: hidden ;
-    
-      font-family: 'Open Sans';
-      font-style: normal;
-      font-weight: 600px;
-      font-size: 20px;
-      line-height: 27px;
-    
-      color: #006DF0;
-      
+      width: 304px;
+      font-weight: 500px;
+      font-size: 14px;
     }
-    
-    .copy{
-      left: 12.5%;
-      right: 16.67%;
-      top: 8.33%;
-      bottom: 8.33%;
-      padding-left: 10px;
-      padding-right: 8px ;
+    ::placeholder{
+      font-size: 16px;
+      padding-left: 7px;
     }
-    
-    .copybtn{
-      padding: 0;
-      border: none;
-      background: none;
-      cursor: pointer;
-    }
-    
-    .hiddenshortedUrl{
-      width: 193px;
-      height: 27px;
-
-    }
-    
-    .empty{
-      width: 193px;
-      height: 27px;
-      
-      padding-bottom: 34px;
-    }
-    
   }
-
-::placeholder{
-  font-size: 15px;
-  padding-left: 7px;
-}
