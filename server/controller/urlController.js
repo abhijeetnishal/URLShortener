@@ -39,7 +39,7 @@ const createUrl = async (req, res) => {
             if(urlExist){
                 //If exist then simply return the shortId instead of creating new one
                 const shortId = urlExist.shortId;
-                res.status(201).json(`https://urlsrt.vercel.app/${shortId}`);
+                res.status(201).json(`http://localhost:4000/${shortId}`);
             }
 
             else{
@@ -54,7 +54,7 @@ const createUrl = async (req, res) => {
                 await newUrl.save();
                 
                 //send shorturl to client
-                res.status(201).json(`https://urlsrt.vercel.app/${shortId}`);
+                res.status(201).json(`http://localhost:4000/${shortId}`);
             }
         }
         catch(error){

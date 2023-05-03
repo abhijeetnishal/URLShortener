@@ -28,10 +28,5 @@ app.listen(port, (req, res) => {
     console.log('server listening at port '+ port);
 });
 
-app.get('/',(req, res)=>{
-  res.status(200).json('server started');
-})
-
-
 const urlRouter = require('./routes/urlRoutes')
 app.use(urlRouter);
