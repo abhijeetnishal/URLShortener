@@ -102,6 +102,7 @@
     background-color: #FFFFFF;
     border: 2px solid #B898D8;
     border-radius: 40px;
+    padding-left: 20px;
   
   }
   
@@ -126,7 +127,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 410px;
+    width: 460px;
     height: 50px;
   }
   
@@ -164,9 +165,21 @@
     color: #006DF0;
   }
   .copybtn{
-    padding: 0;
-    border: none;
-    background: none;
+    padding: 3px;
+    background-color: lightgray;
+    border-radius: 5px;
+    border: gray 1px solid;
+    cursor: pointer;
+  }
+  .copybtn:hover{
+    background-color: rgb(201, 201, 201);
+  }
+  .copybtn:active{
+    background-color: rgb(168, 168, 168)
+  }
+  .tooltip{
+    position: absolute;
+    transform: translateY(-20px);
   }
   .hiddenshortedUrl{
     display: flex;
@@ -183,7 +196,6 @@
   }
   ::placeholder{
     font-size: 19px;
-    padding-left: 7px;
   }
 
 /* 
@@ -193,11 +205,9 @@ Responsive css for smaller device.
     /* CSS rules for standard mobile device */
 
     .headerClass{
-      width: 550px;
       height: 56px;
     }
     .mainClass{
-      width: 550px;
       height: calc(100vh - 56px);
     }
     .text-2{
@@ -249,6 +259,5 @@ Responsive css for smaller device.
     }
     ::placeholder{
       font-size: 16px;
-      padding-left: 7px;
     }
   }
