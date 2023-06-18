@@ -1,4 +1,4 @@
-import '../styles/homeScreen.css'
+import '../Styles/homeScreen.css'
 import Loading from "./Loading";
 import link from '../assets/Vector.png'
 import http from '../assets/http.png'
