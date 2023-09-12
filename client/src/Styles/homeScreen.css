@@ -95,6 +95,7 @@
   
   .originalUrlContainer{
     box-sizing: border-box;
+    outline: none;
   
     width: 524px;
     height: 56px;
@@ -102,8 +103,9 @@
     background-color: #FFFFFF;
     border: 2px solid #B898D8;
     border-radius: 40px;
-    padding-left: 20px;
-  
+    padding-left: 10px;
+
+    font-size: 16px;
   }
   
   .shortBtn{
@@ -127,7 +129,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 460px;
+    align-items: center;
+    width: 420px;
     height: 50px;
   }
   
@@ -147,7 +150,7 @@
   }
   
   .shortUrlText{
-    width: 95px;
+    width: 90px;
     padding-right:0.1px;
     font-style: normal;
     font-weight: 600px;
@@ -156,7 +159,7 @@
   }
   
   .sUrl{
-    width: 314px;
+    width: 290px;
     padding-left: -1px;
     font-style: normal;
     font-weight: 600px;
@@ -166,16 +169,16 @@
   }
   .copybtn{
     padding: 3px;
-    background-color: lightgray;
+    background-color: rgb(255, 255, 255);
     border-radius: 5px;
-    border: gray 1px solid;
+    border: rgb(254, 249, 249) 1px solid;
     cursor: pointer;
   }
   .copybtn:hover{
-    background-color: rgb(201, 201, 201);
+    background-color: rgb(218, 213, 213);
   }
   .copybtn:active{
-    background-color: rgb(168, 168, 168)
+    background-color: rgb(251, 242, 242)
   }
   .tooltip{
     position: absolute;
@@ -227,6 +230,7 @@ Responsive css for smaller device.
     
     .originalUrlContainer{
       width: 100%;
+      font-size: 14px;
     }
     .shortBtn{
       margin-left: -101px;
@@ -249,13 +253,14 @@ Responsive css for smaller device.
     }
     
     .shortUrlText{
-      font-weight: 500px;
-      font-size: 14px;
+      width: 95px;
+      font-weight: 600px;
+      font-size: 15px;
     }
     .sUrl{
-      width: 304px;
-      font-weight: 500px;
-      font-size: 14px;
+      width: 270px;
+      font-weight: 50px;
+      font-size: 15px;
     }
     ::placeholder{
       font-size: 16px;

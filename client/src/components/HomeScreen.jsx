@@ -64,7 +64,7 @@ function HomeScreen() {
                     navigator.clipboard.writeText(shortUrl)
                     setTimeout(() => setShowTooltip(false), 2000)
               }}>
-                  <img src={copy} alt="" />
+                  <img className='copy-image' src={copy} alt="" />
               </button>
               </div>
               </div>
