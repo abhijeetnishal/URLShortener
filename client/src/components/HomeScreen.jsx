@@ -12,22 +12,39 @@ function HomeScreen() {
     const [shortUrl, setShortUrl] = useState('');
     const [showTooltip, setShowTooltip] = useState(false);
 
+    function isValidURL(url) {
+      try {
+        new URL(url);
+        return true;
+      } catch (error) {
+        return false;
+      }
+    }
+
     const handleSubmit = async(e) => {
         setIsLoading(true);
         e.preventDefault();
-        const response = await fetch(process.env.REACT_APP_SERVER, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify( {originalUrl} ),
-      });
-  
-      //console.log(response);
-      const data = await response.json();
-      
-      setShortUrl(data);
-      setIsLoading(false)   // Hide loading screen 
+
+        if(isValidURL(originalUrl)){
+          const response = await fetch(process.env.REACT_APP_SERVER, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify( {originalUrl} ),
+          });
+    
+          //console.log(response);
+          const data = await response.json();
+
+          setShortUrl(data);
+          setIsLoading(false)   // Hide loading screen 
+        }
+
+        else{
+          setShortUrl("not a valid url");
+          setIsLoading(false)   // Hide loading screen 
+        }
     }
   
     return (
@@ -49,11 +66,18 @@ function HomeScreen() {
               </div>
             </div>
               <div className='hiddenContainer'>
-              {isLoading ? (<Loading/>) : (
+              {
+              isLoading ? (<Loading/>) : (
               <div className='hiddenContainer'>
               {shortUrl==='Please Enter a Valid URL' ? (
-                <div className='hiddenshortedUrl'>enter a valid URL</div>
-              ): shortUrl!=='' ? (
+                <div className='hiddenshortedUrl'>Enter a valid URL</div>
+              )
+              :
+              shortUrl==='not a valid url' ? (
+                <div className='hiddenshortedUrl'>Not a valid URL</div>
+              )
+              :
+              shortUrl!=='' ? (
               <div className='shortedUrl'>
               <div className='shortUrlText'>Short Link: </div> 
               <div className='sUrl'> {shortUrl}</div>
