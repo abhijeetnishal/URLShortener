@@ -23,20 +23,31 @@ The app is built using the following technologies:
 <br>
 
 ## Project Installation Process:
-* Star this repo to support my work and Fork the repo to create your own copy to work from.
-* Clone the repo using cammand:
+1. Star this repo to support my work and Fork the repo to create your own copy to work from.
+2. Clone the repo using cammand:
   - git clone https://github.com/abhijeetnishal/URLShortener.git
-* Move to server directory:
-  - cd server
-* To install dependencies run the cammand:
-  - npm install
-* Now go to .env file and paste your MongoDB.
-* Start the server using command:
-  - npm run dev
-* Now move to client folder:
-  - cd ../client
-* start the react app using command:
-  - npm start
+3. Move to server directory:
+```bash
+    cd server
+```
+4. To install dependencies run the below cammand:
+```bash
+    npm install
+```
+5. Create a .env file in root directory of server and copy contents of .env.example file to .env file and add MongoDB URI to setup database.
+6. Start the server using command:
+```bash
+    npm run dev
+```
+7. Now move to client folder:
+```bash
+    cd ../client
+```
+8. Create a .env file in root directory of client and copy contents of .env.example file to .env file and add your deployed backend URL.
+9. start the react app using command:
+```bash
+    npm start
+```
 
 <br>
 
