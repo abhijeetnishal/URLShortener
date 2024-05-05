@@ -4,7 +4,7 @@
   "description": "urlShortener backend",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js",
+    "start": "nodemon server.js",
     "test": "node ./node_modules/mocha/bin/mocha"
   },
   "author": "Abhijeet Kumar",
