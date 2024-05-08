@@ -12,9 +12,11 @@ This project is a URL Shortener application that allows users to enter a long UR
   <br>
 
 ## Technologies
+
 The project utilizes the following technologies:
 
 - Backend:
+
   - NodeJS: A JavaScript runtime for building server-side applications.
   - ExpressJS: A lightweight framework for building web applications.
   - MongoDB: A document-oriented NoSQL database.
@@ -28,7 +30,8 @@ The project utilizes the following technologies:
 ## Application Setup
 
 To setup the application locally, follow these steps:
-1. Star this repo to support my work and Fork this repo to create your own copy to work from.
+
+1. Star and Fork this repo to create your own copy to work from.
 2. Clone the repository you forked to your local machine using:
 
    ```bash
@@ -73,6 +76,7 @@ To setup the application locally, follow these steps:
 ## How to Contribute
 
 Contributions are welcome! If you would like to contribute to the project, please follow these steps:
+
 1. Clone and setup this application locally by following above application setup steps.
 
 2. Create a new branch for the issue you assigned to work on, using below command:
@@ -102,6 +106,7 @@ Contributions are welcome! If you would like to contribute to the project, pleas
 <br>
 
 ## Code Style
+
 - Please make sure to follow the existing code style and formatting conventions when making contributions to the project.
 
 <br>

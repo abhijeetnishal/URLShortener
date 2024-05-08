@@ -43,7 +43,7 @@ The project utilizes the following technologies:
 
 To setup the application locally, follow these steps:
 
-1. Star this repo to support my work and Fork this repo to create your own copy to work from.
+1. Star and Fork this repo to create your own copy to work from.
 2. Clone the repository you forked to your local machine using:
 
    ```bash
