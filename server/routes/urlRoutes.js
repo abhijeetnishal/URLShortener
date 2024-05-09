@@ -1,13 +1,12 @@
 const express = require('express');
-const urlRouter = new express.Router();
+const urlRouter = express.Router();
 
 const { getSpecificUrl, createUrl } = require('../controller/urlController');
 
-//This route is used to redirect to original url using short url as id
+// Route to redirect to original URL using short URL as ID
 urlRouter.get('/:shortId', getSpecificUrl);
 
-//This route is used to create short url
+// Route to create a short URL
 urlRouter.post('/', createUrl);
-
 
 module.exports = urlRouter;
