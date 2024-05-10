@@ -1,8 +1,7 @@
 # URL Shortener App
 
 ## Introduction
-
-This project is a URL Shortener application that allows users to enter a long URL, which is then shortened to a much shorter URL that can be easily shared. The shortened URL is redirectable to the original long URL.
+This project is a URL Shortener application that allows the users to enter a long URL, which is then shortened to a much shorter URL that can be easily shared. The shortened URL is redirectable to the original long URL.
 <br>
 
 ## Table of Contents
@@ -35,47 +34,47 @@ The project utilizes the following technologies:
     <br>
 
 - Frontend:
-  - React.js: A JavaScript library for building ui components.
+  - React.js: A JavaScript library for building UI components.
 
 <br>
 
 ## Application Setup
 
-To setup the application locally, follow these steps:
+To set up the application locally, follow these steps:
 
-1. Star and Fork this repo to create your own copy to work from.
+1. Star and Fork this repo to create your copy to work from.
 2. Clone the repository you forked to your local machine using:
 
    ```bash
       git clone <your_forked_repo_url>
    ```
 
-3. Navigate to the Server directory using command "cd server" and create a .env file and copy contents of .env.example file to .env file and add all secret keys to setup MongoDB database.
-4. Install dependencies in server directory of project:
+3. Navigate to the Server directory using the command "cd server" and create a .env file and copy the contents of .env.example file to .env file and add all secret keys to set up the MongoDB database.
+4. Install dependencies in the server directory of the project:
 
    ```bash
       npm install
    ```
 
-5. Start the server using command:
+5. Start the server using the command:
 
    ```bash
       npm start
    ```
 
-6. Now navigate to client directory of project using commands:
+6. Now navigate to the client directory of the project using commands:
 
    ```bash
       cd ../client
    ```
 
-7. Install dependencies in client directory of project:
+7. Install dependencies in the client directory of the project:
 
    ```bash
       npm install
    ```
 
-8. Start the application using command:
+8. Start the application using the command:
 
    ```bash
       npm start
@@ -89,9 +88,9 @@ To setup the application locally, follow these steps:
 
 Contributions are welcome! If you would like to contribute to the project, please follow these steps:
 
-1. Clone and setup this application locally by following above application setup steps.
+1. Clone and set up this application locally by following the above application setup steps.
 
-2. Create a new branch for the issue you assigned to work on, using below command:
+2. Create a new branch for the issue you assigned to work on, using the below command:
 
    ```bash
       git checkout -b your_branch_name
