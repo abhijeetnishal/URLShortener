@@ -17,8 +17,20 @@ const urlSchema = new mongoose.Schema({
     },
 }, {timestamps: true})
 
+const userSchema = new mongoose.Schema({
+    username:String,
+    email:String,
+    password:String
+})
+const userModel = new mongoose.model('users' , userSchema);
+const urlModel = new mongoose.model('urls' , urlSchema);
+
+
 //Finally, export UserSchema with the following code:
-module.exports = mongoose.model.urlSchema || mongoose.model("Urls", urlSchema);
+module.exports = {
+    userModel ,
+    urlModel
+}
 
 //The code above is saying: "create a user table or collection if there is no table with that name already".
 //You have completed the model for the user. The user collection is now ready to receive the data that is to be passed to it.
