@@ -1,19 +1,12 @@
 "use client";
-import { Url } from "@/models/Url";
 import axios from "axios";
 import Image from "next/image";
 import { FormEvent, useState } from "react";
 
-interface ResponseData {
-  success?: boolean;
-  message?: string;
-  data?: Url;
-}
-
 export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [responseMessage, setResponseMessage] = useState("");
-  const [responseData, setResponseData] = useState<ResponseData>({});
+  const [responseUrl, setResponseUrl] = useState("");
 
   // Handle submit
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
@@ -23,14 +16,17 @@ export default function Home() {
 
     try {
       setIsSubmitting(true);
-      setResponseData({});
+      setResponseUrl("");
       setResponseMessage("");
-      const response = await axios.post("/api/shorten-url", {
-        originalUrl: data.get("originalUrl"),
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER || "http://localhost:8080"}/`,
+        {
+          originalUrl: data.get("originalUrl"),
+        }
+      );
 
-      setResponseData(response.data);
-      console.log(responseData);
+      setResponseUrl(response.data);
+      console.log(setResponseUrl);
     } catch (error) {
       console.log(error);
       setResponseMessage("Something went wrong");
@@ -64,20 +60,16 @@ export default function Home() {
         </button>
       </form>
 
-      {responseData.success && (
+      {responseUrl.length > 0 && (
         <div className="mt-4">
           <p className="font-semibold">Shortened URL:</p>
           <a
-            href={`${process.env.DOMAIN_NAME || "http://localhost:3000"}/r/${
-              responseData?.data?.shortId
-            }`}
+            href={responseUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 underline"
           >
-            {`${process.env.DOMAIN_NAME || "http://localhost:3000"}/r/${
-              responseData.data?.shortId
-            }`}
+            {responseUrl}
           </a>
         </div>
       )}
