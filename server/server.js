@@ -4,9 +4,6 @@ const express = require("express");
 //create express app
 const app = express();
 
-//require database connection
-const dbConnect = require("./model/dbConnect");
-
 //To access data from .env file
 const dotenv = require("dotenv");
 dotenv.config();
@@ -37,9 +34,6 @@ app.use(cors(corsOptions));
 app.disable("x-powered-by");
 
 app.set("trust proxy", true);
-
-// execute database connection
-dbConnect();
 
 //create a server
 app.listen(port, (req, res) => {
