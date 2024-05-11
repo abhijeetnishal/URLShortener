@@ -1,11 +1,10 @@
 "use client";
-import axios from "axios";
+
 import Image from "next/image";
 import { FormEvent, useState } from "react";
 
 export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [responseMessage, setResponseMessage] = useState("");
   const [responseUrl, setResponseUrl] = useState("");
 
   // Handle submit
@@ -13,27 +12,29 @@ export default function Home() {
     event.preventDefault();
 
     const data = new FormData(event.currentTarget);
-
     try {
       setIsSubmitting(true);
       setResponseUrl("");
-      setResponseMessage("");
-      const response = await axios.post(
-        `${process.env.REACT_APP_SERVER || "http://localhost:8080"}/`,
-        {
-          originalUrl: data.get("originalUrl"),
-        }
-      );
 
-      setResponseUrl(response.data);
-      console.log(setResponseUrl);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ originalUrl: data.get("originalUrl") }),
+      });
+
+      // Assuming response is JSON
+      const responseData = await response.json();
+
+      setResponseUrl(responseData);
     } catch (error) {
       console.log(error);
-      setResponseMessage("Something went wrong");
     } finally {
       setIsSubmitting(false);
     }
   }
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center space-y-4 max-w-6xl mx-auto bg-">
       <Image src={"/http.png"} alt="http" height={"50"} width={"100"} />
