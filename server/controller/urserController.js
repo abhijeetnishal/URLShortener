@@ -5,10 +5,15 @@ const bcrypt = require("bcrypt");
 const signup = async (req, res) => {
   try {
     const { username, email, password } = req.body;
+    // input validation field
+    if (!username || !email || !password) {
+        return res.status(400).json({ error: 'All fields are required' });
+    }
     const user = await userModel.findOne({ email: email });
-    const hashedPassword = await bcrypt.hash(password, 10);
     if (user) res.send("User already exist");
     else {
+      const hashedPassword = await bcrypt.hash(password, 10);
+
       const user = new userModel({
         username,
         email,
