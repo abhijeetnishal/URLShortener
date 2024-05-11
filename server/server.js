@@ -29,4 +29,6 @@ app.listen(port, (req, res) => {
 });
 
 const urlRouter = require("./routes/urlRoutes");
+const userRouter = require('./routes/userRoutes');
+app.use(userRouter);
 app.use(urlRouter);
