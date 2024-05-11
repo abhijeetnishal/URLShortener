@@ -1,10 +1,10 @@
-const urlModel = require("../model/urlSchema"); 
-const validUrl = require("valid-url"); 
-const uniqueString = require("../utils/utils"); 
-const dbConnect = require("../model/dbConnect"); 
-const dotenv = require("dotenv"); 
+const urlModel = require("../model/urlSchema");
+const validUrl = require("valid-url");
+const uniqueString = require("../utils/utils");
+const dbConnect = require("../model/dbConnect");
+const dotenv = require("dotenv");
 
-dotenv.config(); 
+dotenv.config();
 
 // Define asynchronous function to handle specific URL retrieval
 const getSpecificUrl = async (req, res) => {
