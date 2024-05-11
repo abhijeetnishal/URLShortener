@@ -2,35 +2,26 @@
 const mongoose = require("mongoose");
 
 //Create a constant (UserSchema) and assign it the mongoose schema:
-const urlSchema = new mongoose.Schema({
+const urlSchema = new mongoose.Schema(
+  {
     //Specify how the fields should work by adding some mongoose option:
-    originalUrl:{
-        type: String,
-        require: true,
-        unique: false
+    originalUrl: {
+      type: String,
+      require: true,
+      unique: false,
     },
 
     shortId: {
-        type: String,
-        required: true, 
-        unique: true,
+      type: String,
+      required: true,
+      unique: true,
     },
-}, {timestamps: true})
-
-const userSchema = new mongoose.Schema({
-    username:String,
-    email:String,
-    password:String
-})
-const userModel = new mongoose.model('users' , userSchema);
-const urlModel = new mongoose.model('urls' , urlSchema);
-
+  },
+  { timestamps: true }
+);
 
 //Finally, export UserSchema with the following code:
-module.exports = {
-    userModel ,
-    urlModel
-}
+module.exports = mongoose.model.urlSchema || mongoose.model("Urls", urlSchema);
 
 //The code above is saying: "create a user table or collection if there is no table with that name already".
 //You have completed the model for the user. The user collection is now ready to receive the data that is to be passed to it.
