@@ -9,14 +9,14 @@ dotenv.config();
 // Define asynchronous function to handle specific URL retrieval
 const getSpecificUrl = async (req, res) => {
   try {
-    // Retrieve shortId from request parameters
-    const shortId = req.params.shortId;
+    // Destructure shortId from request parameters
+    const { shortId } = req.params;
 
     // Connect to the database
     const connection = await dbConnect(); // Connect to DB only when needed
 
     // Find URL data based on shortId
-    const urlData = await urlModel.findOne({ shortId: shortId });
+    const urlData = await urlModel.findOne({ shortId });
 
     // Retrieve the original URL from the database
     const originalUrl = urlData.originalUrl;
@@ -38,7 +38,7 @@ const getSpecificUrl = async (req, res) => {
 // Define asynchronous function to create a short URL
 const createUrl = async (req, res) => {
   // Retrieve original URL from request body
-  const originalUrl = req.body.originalUrl;
+  const { originalUrl } = req.body;
 
   // Validate the original URL
   if (validUrl.isUri(originalUrl)) {
@@ -47,7 +47,7 @@ const createUrl = async (req, res) => {
       const connection = await dbConnect(); // Connect to DB only when needed
 
       // Check if the URL already exists in the database
-      const urlExist = await urlModel.findOne({ originalUrl: originalUrl });
+      const urlExist = await urlModel.findOne({ originalUrl });
 
       // If the URL exists, return the existing shortId
       if (urlExist) {
@@ -57,8 +57,8 @@ const createUrl = async (req, res) => {
         // If the URL does not exist, generate a new shortId and save the URL to the database
         const shortId = uniqueString.generateBase62String();
         const newUrl = new urlModel({
-          originalUrl: originalUrl,
-          shortId: shortId,
+          originalUrl,
+          shortId,
         });
 
         // Save the new URL to the database
