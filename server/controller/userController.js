@@ -1,6 +1,7 @@
-const userModel = require("../model/userShema");
+const userModel = require("../model/userSchema");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const dbConnect = require("../model/dbConnect");
 
 const signup = async (req, res) => {
   try {
@@ -10,6 +11,9 @@ const signup = async (req, res) => {
     if (!name || !email || !password) {
       return res.status(400).json({ message: "All fields are required" });
     }
+
+    // Connect to the database
+    await dbConnect();
 
     const existingUser = await userModel.findOne({ email });
 
@@ -50,6 +54,9 @@ const login = async (req, res) => {
     if (!email || !password) {
       return res.status(400).json({ message: "All fields are required" });
     }
+
+    // Connect to the database
+    await dbConnect();
 
     const user = await userModel.findOne({ email });
 

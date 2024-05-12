@@ -1,6 +1,6 @@
 // Import necessary modules
-const path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, './.env') });
+const path = require("path");
+require("dotenv").config({ path: path.resolve(__dirname, "./.env") });
 
 // Require mongoose to work with MongoDB
 const mongoose = require("mongoose");

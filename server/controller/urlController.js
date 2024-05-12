@@ -1,10 +1,8 @@
-const urlModel = require('../model/urlSchema')
+const urlModel = require("../model/urlSchema");
 const validUrl = require("valid-url");
 const uniqueString = require("../utils/utils");
 const dbConnect = require("../model/dbConnect");
 const dotenv = require("dotenv");
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
 
 dotenv.config();
 
@@ -15,7 +13,7 @@ const getSpecificUrl = async (req, res) => {
     const { shortId } = req.params;
 
     // Connect to the database
-    const connection = await dbConnect(); // Connect to DB only when needed
+    await dbConnect();
 
     // Find URL data based on shortId
     const urlData = await urlModel.findOne({ shortId });
@@ -46,7 +44,7 @@ const createUrl = async (req, res) => {
   if (validUrl.isUri(originalUrl)) {
     try {
       // Connect to the database
-      const connection = await dbConnect(); // Connect to DB only when needed
+      await dbConnect();
 
       // Check if the URL already exists in the database
       const urlExist = await urlModel.findOne({ originalUrl });
@@ -80,8 +78,7 @@ const createUrl = async (req, res) => {
   }
 };
 
-
 module.exports = {
   getSpecificUrl,
-  createUrl
-}
+  createUrl,
+};
