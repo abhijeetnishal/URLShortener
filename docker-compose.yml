@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+  server:
+    build: ./server
+    container_name: server
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+    environment:
+      - NODE_ENV=development
+      - CLIENT_PROD_URL=http://localhost:3000
+      - DB_URL= mongodb://mongodb:27017/mydatabase
+      - REDIRECT_URL=http://localhost:8080
+
+  client:
+    build: ./client
+    container_name: client
+    ports:
+      - "3000:3000"
+    depends_on:
+      - server
+    environment:
+      - NEXT_PUBLIC_SERVER_URL=http://localhost:8080 
+
+volumes:
+  mongodb_data:
