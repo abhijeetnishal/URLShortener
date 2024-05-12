@@ -11,29 +11,17 @@ dotenv.config();
 //import modules
 const cors = require("cors");
 
+app.use(cors());
+
 app.use(express.json());
 
-//Define port
-const port = process.env.Port || 8080;
+//require database connection
+const dbConnect = require("./model/dbConnect");
 
-// Check environment
-const isProduction = process.env.NODE_ENV === "production";
+// execute database connection
+dbConnect();
 
-// CORS Configuration
-const corsOptions = {
-  origin: isProduction ? process.env.CLIENT_PROD_URL : "*",
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-  preflightContinue: false,
-  optionsSuccessStatus: 200,
-};
-
-// This will allow the user in the frontend to consume the APIs that you have created without any problem.
-app.use(cors(corsOptions));
-
-// Disable X-Powered-By Header
-app.disable("x-powered-by");
-
-app.set("trust proxy", true);
+const port = process.env.PORT || 8080;
 
 //create a server
 app.listen(port, (req, res) => {
@@ -41,4 +29,6 @@ app.listen(port, (req, res) => {
 });
 
 const urlRouter = require("./routes/urlRoutes");
+const userRouter = require('./routes/userRoutes');
+app.use(userRouter);
 app.use(urlRouter);

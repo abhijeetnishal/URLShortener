@@ -1,8 +1,10 @@
-const urlModel = require("../model/urlSchema");
+const urlModel = require('../model/urlSchema')
 const validUrl = require("valid-url");
 const uniqueString = require("../utils/utils");
 const dbConnect = require("../model/dbConnect");
 const dotenv = require("dotenv");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 dotenv.config();
 
@@ -78,7 +80,8 @@ const createUrl = async (req, res) => {
   }
 };
 
+
 module.exports = {
   getSpecificUrl,
-  createUrl,
-};
+  createUrl
+}

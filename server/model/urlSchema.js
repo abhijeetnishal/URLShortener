@@ -2,20 +2,23 @@
 const mongoose = require("mongoose");
 
 //Create a constant (UserSchema) and assign it the mongoose schema:
-const urlSchema = new mongoose.Schema({
+const urlSchema = new mongoose.Schema(
+  {
     //Specify how the fields should work by adding some mongoose option:
-    originalUrl:{
-        type: String,
-        require: true,
-        unique: false
+    originalUrl: {
+      type: String,
+      require: true,
+      unique: false,
     },
 
     shortId: {
-        type: String,
-        required: true, 
-        unique: true,
+      type: String,
+      required: true,
+      unique: true,
     },
-}, {timestamps: true})
+  },
+  { timestamps: true }
+);
 
 //Finally, export UserSchema with the following code:
 module.exports = mongoose.model.urlSchema || mongoose.model("Urls", urlSchema);
