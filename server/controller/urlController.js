@@ -68,7 +68,7 @@ const createUrl = async (req, res) => {
 
       // Check if the URL already exists in the database
       const urlExist = await urlModel.findOne({ originalUrl });
-      const userId = req.user.userId;
+      const userId = req.userId;
 
       // If the URL exists, return the existing shortId
       if (urlExist) {
