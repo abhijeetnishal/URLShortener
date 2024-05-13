@@ -5,6 +5,11 @@ const mongoose = require("mongoose");
 const urlSchema = new mongoose.Schema(
   {
     //Specify how the fields should work by adding some mongoose option:
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
+    },
     originalUrl: {
       type: String,
       require: true,
