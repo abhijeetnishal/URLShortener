@@ -6,6 +6,7 @@ import { FormEvent, useState } from "react";
 export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [responseUrl, setResponseUrl] = useState("");
+  const [isCopied, setIsCopied] = useState(false);//state to handle whether url is copied or not to make changes in UI
 
   // Handle submit
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
@@ -15,6 +16,7 @@ export default function Home() {
     try {
       setIsSubmitting(true);
       setResponseUrl("");
+      setIsCopied(false)
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/`, {
         method: "POST",
@@ -33,6 +35,12 @@ export default function Home() {
     } finally {
       setIsSubmitting(false);
     }
+  }
+
+  //function to copy url on Click
+  const copyToClipboard = () =>{
+    window.navigator.clipboard.writeText(responseUrl);
+    setIsCopied(true);
   }
 
   return (
@@ -72,6 +80,7 @@ export default function Home() {
           >
             {responseUrl}
           </a>
+          <button className={isCopied?"bg-green-500 rounded-md pt-2 pb-2 p-3 ml-5":"bg-blue-500 rounded-md pt-2 pb-2 p-3 ml-5"} onClick={copyToClipboard}>{isCopied?'Copied':'Copy Url'}</button>
         </div>
       )}
     </main>
