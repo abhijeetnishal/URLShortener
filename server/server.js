@@ -7,6 +7,7 @@ const cors = require("cors");
 
 //To access data from .env file
 const dotenv = require("dotenv");
+const userRouter = require("./routes/user");
 dotenv.config();
 
 //create express app
@@ -42,6 +43,7 @@ app.get("/", (req, res) => {
 
 app.use(urlRouter);
 app.use(authRouter);
+app.use(userRouter);
 
 //create a server
 app.listen(port, (req, res) => {

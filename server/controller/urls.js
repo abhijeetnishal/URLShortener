@@ -1,31 +1,10 @@
 const urlModel = require("../model/urlSchema");
-const userModel = require("../model/userSchema");
 const validUrl = require("valid-url");
 const uniqueString = require("../utils/utils");
 const dbConnect = require("../model/dbConnect");
 const dotenv = require("dotenv");
 
 dotenv.config();
-
-// Define asynchronous function to handle specific URL retrieval
-const getAllUserUrls = async (req, res) => {
-  try {
-    // Connect to the database
-    await dbConnect();
-
-    const userId = req.userId;
-
-    // Find all URLs created by the user
-    const userUrls = await urlModel.find({ userId: userId });
-
-    res.status(200).json({ urls: userUrls });
-
-  } catch (error) {
-    // Handle any errors that occur during the process
-    console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-};
 
 const getSpecificUrl = async (req, res) => {
   try {
@@ -43,15 +22,15 @@ const getSpecificUrl = async (req, res) => {
 
     // If original URL is found, redirect to it
     if (originalUrl) {
-      res.redirect(originalUrl);
+      return res.redirect(originalUrl);
     } else {
       // If original URL is not found, send 404 status
-      res.status(404).send("URL not found");
+      return res.status(404).send("URL not found");
     }
   } catch (error) {
     // Handle any errors that occur during the process
     console.log(error);
-    res.status(500).json({ message: "Internal Server Error" });
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
@@ -73,7 +52,7 @@ const createUrl = async (req, res) => {
       // If the URL exists, return the existing shortId
       if (urlExist) {
         const shortId = urlExist.shortId;
-        res.status(201).json(`${process.env.REDIRECT_URL}/${shortId}`);
+        return res.status(201).json(`${process.env.REDIRECT_URL}/${shortId}`);
       } else {
         // If the URL does not exist, generate a new shortId and save the URL to the database
         const shortId = uniqueString.generateBase62String();
@@ -87,21 +66,20 @@ const createUrl = async (req, res) => {
         await newUrl.save();
 
         // Send the newly created short URL to the client
-        res.status(201).json(`${process.env.REDIRECT_URL}/${shortId}`);
+        return res.status(201).json(`${process.env.REDIRECT_URL}/${shortId}`);
       }
     } catch (error) {
       // Handle any errors that occur during the process
       console.log(error);
-      res.status(500).json({ message: "Internal Server Error" });
+      return res.status(500).json({ message: "Internal Server Error" });
     }
   } else {
     // If the original URL is not valid, send a 400 status
-    res.status(400).json("Please Enter a Valid URL");
+    return res.status(400).json("Please Enter a Valid URL");
   }
 };
 
 module.exports = {
   getSpecificUrl,
   createUrl,
-  getAllUserUrls
 };

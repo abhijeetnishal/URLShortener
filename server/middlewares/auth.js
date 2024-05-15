@@ -6,7 +6,7 @@ dotenv.config();
 const isAuthenticated = async (req, res, next) => {
   try {
     // Get access token from request header
-    const token = req.header("x-auth-token");
+    const token = req.header("auth-token");
 
     // Check token exists or not
     if (!token) {
@@ -15,11 +15,11 @@ const isAuthenticated = async (req, res, next) => {
       });
     } else {
       // Check user is authenticated or not
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
-        if (decoded) {
+      if (decoded) {
         // Attach decoded token payload to req.user
-        req.userId = decoded.id;
+        //req.userId = decoded.id;
         next();
       } else {
         return res.status(401).json({
@@ -34,4 +34,4 @@ const isAuthenticated = async (req, res, next) => {
   }
 };
 
-export default isAuthenticated;
+module.exports = isAuthenticated;
