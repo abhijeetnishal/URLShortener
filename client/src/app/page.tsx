@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { FormEvent, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -15,7 +16,7 @@ export default function Home() {
     try {
       setIsSubmitting(true);
       setResponseUrl("");
-
+    
       const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/`, {
         method: "POST",
         headers: {
@@ -24,13 +25,18 @@ export default function Home() {
         body: JSON.stringify({ originalUrl: data.get("originalUrl") }),
       });
 
+      if (response.status == 429) {
+        toast.error('Too Many Requests. Please try again later.');
+      }
+    
       // Assuming response is JSON
       const responseData = await response.json();
-
+    
       setResponseUrl(responseData);
     } catch (error) {
-      console.log(error);
+      console.log("error :",error);  
     } finally {
+      console.log("here");
       setIsSubmitting(false);
     }
   }
