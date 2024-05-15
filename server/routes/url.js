@@ -1,5 +1,5 @@
 const express = require("express");
-const { getSpecificUrl, createUrl, getAllUserUrls } = require("../controller/urlController");
+const { getSpecificUrl, createUrl, getAllUserUrls } = require("../controller/urls");
 const {isAuthenticated} = require("../middlewares/auth")
 const urlRouter = new express.Router();
 
