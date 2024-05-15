@@ -10,6 +10,7 @@ This project is a URL Shortener application that allows users to enter a long UR
 - [**Features**](#features)
 - [**Technologies**](#technologies)
 - [**Application Setup**](#application-setup)
+- [**Run application using script**](#run-application-using-script)
 - [**How to Contribute**](#how-to-contribute)
 - [**Code Style**](#code-style)
 - [**Usage**](#usage)
@@ -63,11 +64,7 @@ To setup the application locally, follow these steps:
       npm start
    ```
 
-6. Now navigate to client directory of project using commands:
-
-   ```bash
-      cd ../client
-   ```
+6. Now Navigate to the client directory using command "cd client" and create a .env.local file and copy contents of .env.sample file to .env.local file and add server URL.
 
 7. Install dependencies in client directory of project:
 
@@ -84,6 +81,21 @@ To setup the application locally, follow these steps:
 9. Open http://localhost:3000 in your browser to see the application.
 
 <br>
+
+### Run application using script:
+
+1. Run mongodb database locally if not running, Open Git Bash in root directory of your project where Setup.sh file is present and run the below command:
+
+   ```bash
+      ./script.sh
+   ```
+
+2. This will setup the frontend application and database, finally start the server using below command:
+
+   ```bash
+      cd server
+      npm start
+   ```
 
 ## How to Contribute
 

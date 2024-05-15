@@ -1,4 +1,5 @@
 const urlModel = require("../model/urlSchema");
+const userModel = require("../model/userSchema");
 const validUrl = require("valid-url");
 const uniqueString = require("../utils/utils");
 const dbConnect = require("../model/dbConnect");
@@ -7,6 +8,25 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 // Define asynchronous function to handle specific URL retrieval
+const getAllUserUrls = async (req, res) => {
+  try {
+    // Connect to the database
+    await dbConnect();
+
+    const userId = req.userId;
+
+    // Find all URLs created by the user
+    const userUrls = await urlModel.find({ userId: userId });
+
+    res.status(200).json({ urls: userUrls });
+
+  } catch (error) {
+    // Handle any errors that occur during the process
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
 const getSpecificUrl = async (req, res) => {
   try {
     // Destructure shortId from request parameters
@@ -48,6 +68,7 @@ const createUrl = async (req, res) => {
 
       // Check if the URL already exists in the database
       const urlExist = await urlModel.findOne({ originalUrl });
+      const userId = req.userId;
 
       // If the URL exists, return the existing shortId
       if (urlExist) {
@@ -57,6 +78,7 @@ const createUrl = async (req, res) => {
         // If the URL does not exist, generate a new shortId and save the URL to the database
         const shortId = uniqueString.generateBase62String();
         const newUrl = new urlModel({
+          userId,
           originalUrl,
           shortId,
         });
@@ -81,4 +103,5 @@ const createUrl = async (req, res) => {
 module.exports = {
   getSpecificUrl,
   createUrl,
+  getAllUserUrls
 };
