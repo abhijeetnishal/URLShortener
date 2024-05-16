@@ -1,25 +1,23 @@
 const urlModel = require("../model/urlSchema");
 const validUrl = require("valid-url");
 const uniqueString = require("../utils/utils");
-const dbConnect = require("../model/dbConnect");
-const dotenv = require("dotenv");
 
-dotenv.config();
+
+require("dotenv").config();
 
 // Define asynchronous function to handle specific URL retrieval
 const getSpecificUrl = async (req, res) => {
   try {
     // Destructure shortId from request parameters
     const { shortId } = req.params;
-
-    // Connect to the database
-    await dbConnect();
+    console.log("this is short id",shortId)
+    
 
     // Find URL data based on shortId
     const urlData = await urlModel.findOne({ shortId });
 
     // Retrieve the original URL from the database
-    const originalUrl = urlData.originalUrl;
+    const originalUrl = urlData?.originalUrl;
 
     // If original URL is found, redirect to it
     if (originalUrl) {
@@ -35,20 +33,27 @@ const getSpecificUrl = async (req, res) => {
   }
 };
 
+
+
+
+
+
+
+
 // Define asynchronous function to create a short URL
 const createUrl = async (req, res) => {
   // Retrieve original URL from request body
   const { originalUrl } = req.body;
+  console.log("req is coming to backend",originalUrl)
 
   // Validate the original URL
   if (validUrl.isUri(originalUrl)) {
     try {
-      // Connect to the database
-      await dbConnect();
+      
 
       // Check if the URL already exists in the database
       const urlExist = await urlModel.findOne({ originalUrl });
-
+    
       // If the URL exists, return the existing shortId
       if (urlExist) {
         const shortId = urlExist.shortId;
