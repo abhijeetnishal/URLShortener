@@ -1,12 +1,11 @@
 "use client";
+
 import Image from "next/image";
 import { FormEvent, useState } from "react";
-import toast from "react-hot-toast";
-import { Toaster } from "react-hot-toast";
 
 export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [responseUrl, setResponseUrl] = useState("");
+  const [responseUrl, setResponseUrl] = useState("https://google.com");
   const [message, setmessage] = useState(false);
   // Handle submit
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
@@ -16,7 +15,7 @@ export default function Home() {
     try {
       setIsSubmitting(true);
       setResponseUrl("");
-    
+
       const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/`, {
         method: "POST",
         headers: {
@@ -25,24 +24,18 @@ export default function Home() {
         body: JSON.stringify({ originalUrl: data.get("originalUrl") }),
       });
 
-      if (response.status == 429) {
-        toast.error('Too Many Requests. Please try again later.');
-      }
-    
       // Assuming response is JSON
       const responseData = await response.json();
-    
+
       setResponseUrl(responseData);
     } catch (error) {
-      console.log("error :",error);  
+      console.log(error);
     } finally {
       setIsSubmitting(false);
     }
   }
 
   return (
-    <>
-    <Toaster position="top-center"/>
     <main className="flex min-h-screen flex-col items-center justify-center space-y-4 max-w-6xl mx-auto bg-">
       <Image src={"/http.png"} alt="http" height={"50"} width={"100"} />
       <h3 className="font-semibold text-xl mb-2">Tired of big URLs ?</h3>
@@ -71,17 +64,16 @@ export default function Home() {
       {responseUrl.length > 0 && (
         <div className="mt-4">
           <p className="font-semibold">Shortened URL:</p>
-          <div className="bg-blue-500 text-white py-4 px-4 -translate-x-2 rounded-full border-2" style={{ display: 'flex', alignItems: 'center' }}>
-  <a
-    href={responseUrl}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="white underline"
-    style={{ marginRight: '1rem' }}
-  >
-    {responseUrl}
-  </a>
-  <Image src={"/copyi.svg"} alt="copy" width={"20"} style={{cursor:"pointer",marginLeft:"10px"}} onClick={()=>{
+          <a
+            href={responseUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 underline"
+            style={{float:"left"}}
+          >
+            {responseUrl}
+          </a>
+          <Image src={"/copyi.svg"} alt="copy" width={"20"} style={{cursor:"pointer",marginLeft:"10px"}} onClick={()=>{
                        navigator.clipboard.writeText(responseUrl); 
                        setmessage(true)
                        setTimeout(() => {
@@ -93,12 +85,8 @@ export default function Home() {
               Copied!
             </div>
           )}
-</div>
-
-          
         </div>
       )}
     </main>
-    </>
   );
 }
