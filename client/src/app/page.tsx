@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { FormEvent, useState } from "react";
 import toast from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 
 export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -36,12 +37,13 @@ export default function Home() {
     } catch (error) {
       console.log("error :",error);  
     } finally {
-      console.log("here");
       setIsSubmitting(false);
     }
   }
 
   return (
+    <>
+    <Toaster position="top-center"/>
     <main className="flex min-h-screen flex-col items-center justify-center space-y-4 max-w-6xl mx-auto bg-">
       <Image src={"/http.png"} alt="http" height={"50"} width={"100"} />
       <h3 className="font-semibold text-xl mb-2">Tired of big URLs ?</h3>
@@ -81,5 +83,6 @@ export default function Home() {
         </div>
       )}
     </main>
+    </>
   );
 }

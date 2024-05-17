@@ -4,11 +4,10 @@ const express = require("express");
 const authRouter = require("./routes/auth");
 const urlRouter = require("./routes/url");
 const cors = require("cors");
-// const redisClient = require("./config/redis")
 
 //To access data from .env file
 const dotenv = require("dotenv");
-const { rateLimit } = require("./controller/rateLimit");
+const userRouter = require("./routes/user");
 dotenv.config();
 
 //create express app
@@ -38,12 +37,13 @@ app.disable("x-powered-by");
 app.set("trust proxy", true);
 
 //get request when server is live
-app.get("/", rateLimit, (req, res) => {
+app.get("/", (req, res) => {
   res.status(200).json("Server is Live");
 });
 
 app.use(urlRouter);
 app.use(authRouter);
+app.use(userRouter);
 
 //create a server
 app.listen(port, (req, res) => {
