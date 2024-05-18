@@ -1,5 +1,5 @@
 "use client";
-import { CopyButtonIcon } from "@/icons/copyButtonIcon";
+import { CopyButtonIcon } from "@/icons/CopyButtonIcon";
 import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
