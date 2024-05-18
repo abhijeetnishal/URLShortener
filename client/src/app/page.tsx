@@ -1,12 +1,14 @@
 "use client";
+import { CopyButtonIcon } from "@/icons/copyButtonIcon";
 import Image from "next/image";
+import Link from "next/link";
 import { FormEvent, useState } from "react";
 
 export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [responseUrl, setResponseUrl] = useState("");
-  const [message, setmessage] = useState(false);
-  // Handle submit
+  const [message, setMessage] = useState(false);
+
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -41,7 +43,7 @@ export default function Home() {
       <h1 className="font-bold text-3xl sm:text-4xl">
         Make Your <span className="text-blue-500">URL</span> Short
       </h1>
-      {/* Shorten link form */}
+
       <form onSubmit={onSubmit}>
         <input
           type="url"
@@ -62,32 +64,34 @@ export default function Home() {
 
       {responseUrl.length > 0 && (
         <div className="mt-4">
-          <p className="font-semibold">Shortened URL:</p>
-          <div className="bg-blue-500 text-white py-4 px-4 -translate-x-2 rounded-full border-2" style={{ display: 'flex', alignItems: 'center' }}>
-  <a
-    href={responseUrl}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="white underline"
-    style={{ marginRight: '1rem' }}
-  >
-    {responseUrl}
-  </a>
-  <Image src={"/copyi.svg"} alt="copy" width={"20"} style={{cursor:"pointer",marginLeft:"10px"}} onClick={()=>{
-                       navigator.clipboard.writeText(responseUrl); 
-                       setmessage(true)
-                       setTimeout(() => {
-                        setmessage(false);
-                      }, 1000);
-          }}/>
-           {message && (
-            <div className="ml-2 p-2 bg-gray-800 text-white rounded">
-              Copied!
-            </div>
-          )}
-</div>
-
-          
+          <p className="flex justify-center font-semibold mb-3">
+            Shortened URL
+          </p>
+          <div className="flex justify-center text-white py-2 -translate-x-2 px-3 border bg-blue-400 border-blue-600 rounded-full">
+            <Link
+              href={responseUrl}
+              target="_blank"
+              className="white underline mr-4"
+            >
+              {responseUrl}
+            </Link>
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(responseUrl);
+                setMessage(true);
+                setTimeout(() => {
+                  setMessage(false);
+                }, 1000);
+              }}
+            >
+              <CopyButtonIcon />
+            </button>
+            {message && (
+              <div className="absolute left-56 top-12">
+                <div className="ml-2 px-1 text-white">Copied!</div>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </main>
