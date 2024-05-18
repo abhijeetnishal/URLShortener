@@ -1,6 +1,6 @@
 const express = require("express");
 const { getSpecificUrl, createUrl } = require("../controller/urls");
-const rateLimit = require("../controller/rateLimit");
+const rateLimit = require("../middlewares/rateLimit");
 
 const urlRouter = new express.Router();
 
