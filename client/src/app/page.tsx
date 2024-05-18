@@ -3,6 +3,8 @@ import { CopyButtonIcon } from "@/icons/copyButtonIcon";
 import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
+import toast from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 
 export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -16,7 +18,7 @@ export default function Home() {
     try {
       setIsSubmitting(true);
       setResponseUrl("");
-
+    
       const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/`, {
         method: "POST",
         headers: {
@@ -25,18 +27,24 @@ export default function Home() {
         body: JSON.stringify({ originalUrl: data.get("originalUrl") }),
       });
 
+      if (response.status == 429) {
+        toast.error('Too Many Requests. Please try again later.');
+      }
+    
       // Assuming response is JSON
       const responseData = await response.json();
-
+    
       setResponseUrl(responseData);
     } catch (error) {
-      console.log(error);
+      console.log("error :",error);  
     } finally {
       setIsSubmitting(false);
     }
   }
 
   return (
+    <>
+    <Toaster position="top-center"/>
     <main className="flex min-h-screen flex-col items-center justify-center space-y-4 max-w-6xl mx-auto bg-">
       <Image src={"/http.png"} alt="http" height={"50"} width={"100"} />
       <h3 className="font-semibold text-xl mb-2">Tired of big URLs ?</h3>
@@ -95,5 +103,6 @@ export default function Home() {
         </div>
       )}
     </main>
+    </>
   );
 }
