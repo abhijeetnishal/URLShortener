@@ -8,7 +8,7 @@ const Navbar = () => {
         alt="logo"
         height="40"
         width="40"
-        className="dark:invert"
+        className="dark:invert ml-5"
       />
       <h1 className="text-2xl font-extrabold">Short.Url</h1>
     </div>
