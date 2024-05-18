@@ -46,7 +46,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-center space-y-4 max-w-6xl mx-auto bg-">
       <Image src={"/http.png"} alt="http" height={"50"} width={"100"} />
       <h3 className="font-semibold text-xl mb-2">Tired of big URLs ?</h3>
-      <h1 className="font-bold text-4xl">
+      <h1 className="font-bold text-3xl sm:text-4xl">
         Make Your <span className="text-blue-500">URL</span> Short
       </h1>
       {/* Shorten link form */}
@@ -55,13 +55,13 @@ export default function Home() {
           type="url"
           name="originalUrl"
           id=""
-          className="rounded-l-full py-2 px-4 w-80 border-2 focus:outline-none"
+          className="rounded-l-full py-2 px-4 w-[65vw] sm:w-80 border-2 focus:outline-none"
           required
           placeholder="Enter your long link here"
         />
         <button
           type="submit"
-          className="bg-blue-500 text-white py-2 px-4 -translate-x-2 rounded-r-full border-2"
+          className="bg-blue-500 text-white py-2 px-2 -translate-x-2 rounded-r-full border-2"
           disabled={isSubmitting}
         >
           {isSubmitting ? "Shortening..." : "Shorten It!"}
