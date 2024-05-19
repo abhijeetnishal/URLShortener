@@ -1,5 +1,5 @@
 const urlModel = require("../model/urlSchema");
-const dbConnect = require("../model/dbConnect");
+const dbConnect = require("../config/dbConnect");
 const dotenv = require("dotenv");
 
 dotenv.config();
