@@ -10,10 +10,9 @@ This project is a URL Shortener application that allows users to enter a long UR
 - [**Features**](#features)
 - [**Technologies**](#technologies)
 - [**Application Setup**](#application-setup)
+- [**Run application using script**](#run-application-using-script)
 - [**How to Contribute**](#how-to-contribute)
-- [**Code Style**](#code-style)
 - [**Usage**](#usage)
-- [**Contact**](#contact)
   <br>
 
 ## Features
@@ -35,7 +34,10 @@ The project utilizes the following technologies:
     <br>
 
 - Frontend:
-  - React.js: A JavaScript library for building ui components.
+
+   - Next.js: A React framework for building server-side rendered and statically generated web applications.
+   - TypeScript: TypeScript is used throughout the project to ensure strong type safety and enhance the development process.
+   - Tailwind CSS: Tailwind CSS is used for styling the frontend, offering a utility-first approach and speeding up the design process.
 
 <br>
 
@@ -63,11 +65,7 @@ To setup the application locally, follow these steps:
       npm start
    ```
 
-6. Now navigate to client directory of project using commands:
-
-   ```bash
-      cd ../client
-   ```
+6. Now Navigate to the client directory using command "cd client" and create a .env.local file and copy contents of .env.sample file to .env.local file and add server URL.
 
 7. Install dependencies in client directory of project:
 
@@ -84,6 +82,21 @@ To setup the application locally, follow these steps:
 9. Open http://localhost:3000 in your browser to see the application.
 
 <br>
+
+### Run application using script:
+
+1. Run mongodb database locally if not running, Open Git Bash in root directory of your project where Setup.sh file is present and run the below command:
+
+   ```bash
+      ./script.sh
+   ```
+
+2. This will setup the frontend application and database, finally start the server using below command:
+
+   ```bash
+      cd server
+      npm start
+   ```
 
 ## How to Contribute
 
@@ -117,19 +130,9 @@ Contributions are welcome! If you would like to contribute to the project, pleas
 
 <br>
 
-## Code Style
-
-- Please make sure to follow the existing code style and formatting conventions when making contributions to the project.
-
-<br>
-
 ## Usage
 
 To use the app, follow these steps:
 
 1. Enter a long URL in the input field and click the "Shorten" button.
 2. Copy the shortened URL and share it with others.
-
-## Contact
-
-- If you have any questions or suggestions with the app, please feel free to contact on LinkedIn: https://www.linkedin.com/in/abhijeetkumar7565/

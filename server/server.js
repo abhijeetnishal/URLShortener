@@ -1,15 +1,14 @@
 //import express module
 const express = require("express");
 
-const urlRouter = require("./routes/urlRoutes");
-const userRouter = require("./routes/userRoutes");
+const authRouter = require("./routes/auth");
+const urlRouter = require("./routes/url");
+const cors = require("cors");
 
 //To access data from .env file
 const dotenv = require("dotenv");
+const userRouter = require("./routes/user");
 dotenv.config();
-
-//import modules
-const cors = require("cors");
 
 //create express app
 const app = express();
@@ -43,6 +42,7 @@ app.get("/", (req, res) => {
 });
 
 app.use(urlRouter);
+app.use(authRouter);
 app.use(userRouter);
 
 //create a server
