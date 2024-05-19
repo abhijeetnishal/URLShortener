@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import Navbar from "@/components/Navbar";
 const poppins = Poppins({ subsets: ["latin"], weight: "400" });
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "ShortURL",
@@ -26,6 +27,7 @@ export default function RootLayout({
           <Navbar />
           {children}
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
