@@ -1,8 +1,9 @@
 const urlModel = require("../model/urlSchema");
 const validUrl = require("valid-url");
 const uniqueString = require("../utils/utils");
-const dbConnect = require("../model/dbConnect");
+const dbConnect = require("../config/dbConnect");
 const dotenv = require("dotenv");
+const trackEvent = require("../config/mixpanel");
 
 dotenv.config();
 
@@ -52,7 +53,12 @@ const createUrl = async (req, res) => {
       // If the URL exists, return the existing shortId
       if (urlExist) {
         const shortId = urlExist.shortId;
-        return res.status(201).json(`${process.env.REDIRECT_URL}/${shortId}`);
+        const shortenedURL = `${process.env.REDIRECT_URL}/${shortId}`;
+
+        // track event
+        trackEvent("Existing URL", shortenedURL);
+
+        return res.status(201).json(shortenedURL);
       } else {
         // If the URL does not exist, generate a new shortId and save the URL to the database
         const shortId = uniqueString.generateBase62String();
@@ -64,6 +70,9 @@ const createUrl = async (req, res) => {
 
         // Save the new URL to the database
         await newUrl.save();
+
+        // track event
+        trackEvent("New URL shortened", originalUrl);
 
         // Send the newly created short URL to the client
         return res.status(201).json(`${process.env.REDIRECT_URL}/${shortId}`);

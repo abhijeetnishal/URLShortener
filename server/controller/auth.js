@@ -1,7 +1,7 @@
 const userModel = require("../model/userSchema");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const dbConnect = require("../model/dbConnect");
+const dbConnect = require("../config/dbConnect");
 
 const signup = async (req, res) => {
   try {

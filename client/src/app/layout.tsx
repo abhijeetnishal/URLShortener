@@ -23,10 +23,8 @@ export default function RootLayout({
       <link rel="icon" href="/chain.png" />
       <body className={poppins.className}>
         <ThemeProvider attribute="class" enableSystem>
-          <div className="relative max-w-6xl mx-auto">
-            <Navbar />
-            {children}
-          </div>
+          <Navbar />
+          {children}
         </ThemeProvider>
       </body>
     </html>
