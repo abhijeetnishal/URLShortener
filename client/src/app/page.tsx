@@ -2,13 +2,13 @@
 
 import Image from "next/image";
 import { FormEvent, useState } from "react";
-import { ToastContainer, toast } from 'react-toast' 
+ 
 
 export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [responseUrl, setResponseUrl] = useState("");
 
-  const notify=()=>toast.error("your provided url is not correct");
+  
   // Handle submit
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -18,14 +18,14 @@ export default function Home() {
       //validating the given url
 
       const givenUrl = data.get("originalUrl");
-      console.log("this url is", givenUrl);
+      
       if (givenUrl) {
         try{
 
             setIsSubmitting(true);
             setResponseUrl("");
       
-            const response = await fetch(`http://localhost:8080/`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -35,7 +35,6 @@ export default function Home() {
       
             // Assuming response is JSON
             const responseData = await response?.json();
-      console.log("this is coing form backend ",responseData)
             setResponseUrl(responseData);
           } catch (error) {
             console.log(error);

@@ -10,7 +10,7 @@ const getSpecificUrl = async (req, res) => {
   try {
     // Destructure shortId from request parameters
     const { shortId } = req.params;
-    console.log("this is short id",shortId)
+    
     
 
     // Find URL data based on shortId
@@ -44,7 +44,7 @@ const getSpecificUrl = async (req, res) => {
 const createUrl = async (req, res) => {
   // Retrieve original URL from request body
   const { originalUrl } = req.body;
-  console.log("req is coming to backend",originalUrl)
+  
 
   // Validate the original URL
   if (validUrl.isUri(originalUrl)) {

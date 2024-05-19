@@ -19,8 +19,6 @@ async function checkWebsite(url) {
                 reject(e);
             });
         });
-
-        console.log(url, response.statusCode);
         return response.statusCode === 200;
     } catch (error) {
         console.error("Error checking website:", error);
@@ -40,7 +38,7 @@ exports.validateUrl=async(req,res,next)=>{
             })
         }
     const check = await checkWebsite(originalUrl);
-    console.log(check);
+    
     if(check){
         next();
     }
@@ -52,9 +50,6 @@ exports.validateUrl=async(req,res,next)=>{
     }
     catch(err){
         console.log("err while validating the url",err);
-        return res.status(401).json({
-            message:"err while validating the url",
-            success:false,
-        })
+        return res.status(401).json("err while validating the url")
     }
 }
