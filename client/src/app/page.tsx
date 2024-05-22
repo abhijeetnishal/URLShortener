@@ -1,5 +1,8 @@
 "use client";
 import { CopyButtonIcon } from "@/icons/CopyButtonIcon";
+import GmailIcon from "../icons/GmailIcon";
+import LinkedInIcon from "../icons/LinkedInIcon";
+import WhatsAppIcon from "../icons/WhatsAppIcon";
 import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
@@ -100,6 +103,17 @@ export default function Home() {
               </div>
             )}
           </div>
+            <div className="flex justify-center space-x-4 mt-4">
+              <a href={`https://wa.me/?text=${encodeURIComponent(responseUrl)}`} target="_blank" rel="noopener noreferrer">
+                <WhatsAppIcon /> {/* Added WhatsApp share button */}
+              </a>
+              <a href={`mailto:?subject=Check this URL&body=${encodeURIComponent(responseUrl)}`} target="_blank" rel="noopener noreferrer">
+                <GmailIcon /> {/* Added Gmail share button */}
+              </a>
+              <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(responseUrl)}`} target="_blank" rel="noopener noreferrer">
+                <LinkedInIcon /> {/* Added LinkedIn share button */}
+              </a>
+            </div>
         </div>
       )}
     </main>
