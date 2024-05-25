@@ -1,6 +1,9 @@
 // pages/index.js or pages/home.js
 "use client";
 import { CopyButtonIcon } from "@/icons/CopyButtonIcon";
+import GmailIcon from "../icons/GmailIcon";
+import LinkedInIcon from "../icons/LinkedInIcon";
+import WhatsAppIcon from "../icons/WhatsAppIcon";
 import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
@@ -32,7 +35,9 @@ export default function Home() {
         toast.error("Too Many Requests. Please try again later.");
       }
 
+      // Assuming response is JSON
       const responseData = await response.json();
+
       setResponseUrl(responseData);
     } catch (error) {
       console.log("error :", error);
@@ -44,69 +49,91 @@ export default function Home() {
   return (
     <>
       <Toaster position="top-center" />
-      <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-black dark:text-white transition-colors duration-300 relative">
-        <div className="absolute top-4 right-4">
-          <ThemeToggle />
-        </div>
-        <main className="flex flex-col items-center justify-center flex-grow space-y-4 max-w-6xl mx-auto">
-          <Image src={"/http.png"} alt="http" height={"50"} width={"100"} />
-          <h3 className="font-semibold text-xl mb-2">Tired of big URLs?</h3>
-          <h1 className="font-bold text-3xl sm:text-4xl">
-            Make Your <span className="text-blue-500">URL</span> Short
-          </h1>
+      <main className="flex min-h-screen flex-col items-center justify-center space-y-4 max-w-6xl mx-auto bg-">
+        <Image src={"/http.png"} alt="http" height={"50"} width={"100"} />
+        <h3 className="font-semibold text-xl mb-2">Tired of big URLs ?</h3>
+        <h1 className="font-bold text-3xl sm:text-4xl">
+          Make Your <span className="text-blue-500">URL</span> Short
+        </h1>
 
-          <form onSubmit={onSubmit}>
-            <input
-              type="url"
-              name="originalUrl"
-              id=""
-              className="rounded-l-full py-2 px-4 w-[65vw] sm:w-80 border-2 focus:outline-none"
-              required
-              placeholder="Enter your long link here"
-            />
-            <button
-              type="submit"
-              className="bg-blue-500 text-white py-2 px-2 -translate-x-2 rounded-r-full border-2"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Shortening..." : "Shorten It!"}
-            </button>
-          </form>
+        <form onSubmit={onSubmit}>
+          <input
+            type="url"
+            name="originalUrl"
+            id=""
+            className="rounded-l-full py-2 px-4 w-[65vw] sm:w-80 border-2 focus:outline-none"
+            required
+            placeholder="Enter your long link here"
+          />
+          <button
+            type="submit"
+            className="bg-blue-500 text-white py-2 px-2 -translate-x-2 rounded-r-full border-2"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Shortening..." : "Shorten It!"}
+          </button>
+        </form>
 
-          {responseUrl.length > 0 && (
-            <div className="mt-4">
-              <p className="flex justify-center font-semibold mb-3">
-                Shortened URL
-              </p>
-              <div className="flex justify-center text-white py-2 -translate-x-2 px-3 border bg-blue-400 border-blue-600 rounded-full">
-                <Link
-                  href={responseUrl}
-                  target="_blank"
-                  className="white underline mr-4"
-                >
-                  {responseUrl}
-                </Link>
-                <button
-                  onClick={() => {
-                    navigator.clipboard.writeText(responseUrl);
-                    setMessage(true);
-                    setTimeout(() => {
-                      setMessage(false);
-                    }, 1000);
-                  }}
-                >
-                  <CopyButtonIcon />
-                </button>
-                {message && (
-                  <div className="absolute left-56 top-12">
-                    <div className="ml-2 px-1 text-white">Copied!</div>
-                  </div>
-                )}
-              </div>
+        {responseUrl.length > 0 && (
+          <div className="mt-4">
+            <p className="flex justify-center font-semibold mb-3">
+              Shortened URL
+            </p>
+            <div className="flex justify-center text-white py-2 -translate-x-2 px-3 border bg-blue-400 border-blue-600 rounded-full">
+              <Link
+                href={responseUrl}
+                target="_blank"
+                className="white underline mr-4"
+              >
+                {responseUrl}
+              </Link>
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText(responseUrl);
+                  setMessage(true);
+                  setTimeout(() => {
+                    setMessage(false);
+                  }, 1000);
+                }}
+              >
+                <CopyButtonIcon />
+              </button>
+              {message && (
+                <div className="absolute left-56 top-12">
+                  <div className="ml-2 px-1 text-white">Copied!</div>
+                </div>
+              )}
             </div>
-          )}
-        </main>
-      </div>
+            <div className="flex justify-center space-x-4 mt-4">
+              <a
+                href={`https://wa.me/?text=${encodeURIComponent(responseUrl)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <WhatsAppIcon /> {/* Added WhatsApp share button */}
+              </a>
+              <a
+                href={`mailto:?subject=Check this URL&body=${encodeURIComponent(
+                  responseUrl
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <GmailIcon /> {/* Added Gmail share button */}
+              </a>
+              <a
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+                  responseUrl
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LinkedInIcon /> {/* Added LinkedIn share button */}
+              </a>
+            </div>
+          </div>
+        )}
+      </main>
     </>
   );
 }

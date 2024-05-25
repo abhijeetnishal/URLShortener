@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import { GoogleIcon } from "@/components/icons/GoogleIcon";
+import { GoogleIcon } from "@/icons/GoogleIcon";
 
 const LoginPage = () => {
   const [formValues, setFormValues] = useState({ email: "", password: "" });
