@@ -8,7 +8,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -49,7 +48,7 @@ export default function Home() {
   return (
     <>
       <Toaster position="top-center" />
-      <main className="flex min-h-screen flex-col items-center justify-center space-y-4 max-w-6xl mx-auto bg-">
+      <main className="flex min-h-screen flex-col items-center justify-center space-y-4 max-w-6xl mx-auto">
         <Image src={"/http.png"} alt="http" height={"50"} width={"100"} />
         <h3 className="font-semibold text-xl mb-2">Tired of big URLs ?</h3>
         <h1 className="font-bold text-3xl sm:text-4xl">

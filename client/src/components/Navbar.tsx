@@ -1,12 +1,10 @@
-// components/Navbar.tsx
 "use client"; // Added
 import Image from "next/image";
-import ThemeToggle from "./ThemeToggle"; // Added
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   return (
-    <div className="flex items-center justify-between py-3 px-5 bg-white dark:bg-gray-900 text-black dark:text-white shadow-md">
-      {" "}
+    <div className="flex items-center justify-between py-3 px-5 bg-white dark:bg-slate-800 text-black dark:text-white shadow-md">
       <div className="flex items-center">
         <Image
           src="/chain.png"
