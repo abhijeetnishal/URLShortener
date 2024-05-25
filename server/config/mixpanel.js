@@ -5,7 +5,7 @@ const trackEvent = (eventName, value) => {
   const mixPanelProjectToken = process.env.MIXPANEL_PROJECT_TOKEN;
 
   if (mixPanelProjectToken) {
-    const mixpanel = Mixpanel.init(process.env.MIXPANEL_PROJECT_TOKEN, {
+    const mixpanel = Mixpanel.init(mixPanelProjectToken, {
       geolocate: true,
     });
 
