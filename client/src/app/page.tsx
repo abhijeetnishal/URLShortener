@@ -1,3 +1,4 @@
+// pages/index.js or pages/home.js
 "use client";
 import { CopyButtonIcon } from "@/icons/CopyButtonIcon";
 import GmailIcon from "../icons/GmailIcon";
@@ -6,8 +7,8 @@ import WhatsAppIcon from "../icons/WhatsAppIcon";
 import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
-import toast from "react-hot-toast";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
