@@ -1,5 +1,4 @@
-
-const https=require("node:https")
+const https = require("node:https")
 
 async function checkWebsite(url) {
     try {
@@ -13,7 +12,7 @@ async function checkWebsite(url) {
                     'Connection': 'keep-alive',
                 }
             };
-            https.get(url,options, (res) => {
+            https.get(url, options, (res) => {
                 resolve(res);
             }).on("error", (e) => {
                 reject(e);
@@ -21,35 +20,39 @@ async function checkWebsite(url) {
         });
         return response.statusCode === 200;
     } catch (error) {
-        console.error("Error checking website:", error);
         return false;
     }
 }
 
 
 
-exports.validateUrl=async(req,res,next)=>{
-    try{
+const isValidURL = async (req, res, next) => {
+    try {
         const { originalUrl } = req.body;
-        if(!originalUrl){
+        if (!originalUrl) {
             return res.status(400).json({
-                message:"provide the url",
+                message: "provide the url",
+                success: false,
+            })
+        }
+        const check = await checkWebsite(originalUrl);
+
+        if (check) {
+            next();
+        }
+        else {
+            return res.status(404).json({
+                message:"url is not valid",
                 success:false,
             })
         }
-    const check = await checkWebsite(originalUrl);
-    
-    if(check){
-        next();
     }
-    else{
-        return res.status(404).json("url is not valid ")
-    }
-    
-
-    }
-    catch(err){
-        console.log("err while validating the url",err);
-        return res.status(401).json("err while validating the url")
+    catch (err) {
+        return res.status(500).json({
+            message: "err while validating the url",
+            success: false,
+        })
     }
 }
+
+module.exports=isValidURL;

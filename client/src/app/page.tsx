@@ -25,7 +25,7 @@ export default function Home() {
             setIsSubmitting(true);
             setResponseUrl("");
       
-            const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/`, {
+            const response = await fetch(`http://localhost:8080/`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",

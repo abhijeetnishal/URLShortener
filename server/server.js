@@ -1,6 +1,5 @@
 //import express module
 const express = require("express");
-const dbConnect=require("./model/dbConnect")
 const urlRouter = require("./routes/urlRoutes");
 const userRouter = require("./routes/userRoutes");
 
@@ -29,7 +28,7 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
-dbConnect();
+
 // This will allow the user in the frontend to consume the APIs that you have created without any problem.
 app.use(cors(corsOptions));
 

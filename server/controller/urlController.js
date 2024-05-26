@@ -1,7 +1,7 @@
 const urlModel = require("../model/urlSchema");
 const validUrl = require("valid-url");
 const uniqueString = require("../utils/utils");
-
+const dbConnect=require("../model/dbConnect")
 
 require("dotenv").config();
 
@@ -11,7 +11,9 @@ const getSpecificUrl = async (req, res) => {
     // Destructure shortId from request parameters
     const { shortId } = req.params;
     
-    
+    // Connect to the database
+     await dbConnect();
+
 
     // Find URL data based on shortId
     const urlData = await urlModel.findOne({ shortId });
