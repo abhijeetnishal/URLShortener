@@ -18,7 +18,7 @@ const getSpecificUrl = async (req, res) => {
     // Find URL data based on shortId
     const urlData = await urlModel.findOne({ shortId });
 
-    if(!urlData) {
+    if (!urlData) {
       return res.status(301).redirect(`${process.env.CLIENT_PROD_URL}/404`);
     }
 
