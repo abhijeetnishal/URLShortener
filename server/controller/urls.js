@@ -1,11 +1,12 @@
 const urlModel = require("../model/urlSchema");
 const validUrl = require("valid-url");
 const uniqueString = require("../utils/utils");
-const dbConnect=require("../model/dbConnect")
+const dbConnect = require("../config/dbConnect");
+const trackEvent = require("../config/mixpanel");
+
 
 require("dotenv").config();
 
-// Define asynchronous function to handle specific URL retrieval
 const getSpecificUrl = async (req, res) => {
   try {
     // Destructure shortId from request parameters
@@ -23,23 +24,17 @@ const getSpecificUrl = async (req, res) => {
 
     // If original URL is found, redirect to it
     if (originalUrl) {
-      res.redirect(originalUrl);
+      return res.redirect(originalUrl);
     } else {
       // If original URL is not found, send 404 status
-      res.status(404).send("URL not found");
+      return res.status(404).send("URL not found");
     }
   } catch (error) {
     // Handle any errors that occur during the process
     console.log(error);
-    res.status(500).json({ message: "Internal Server Error" });
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 };
-
-
-
-
-
-
 
 
 // Define asynchronous function to create a short URL
@@ -51,19 +46,24 @@ const createUrl = async (req, res) => {
   // Validate the original URL
   if (validUrl.isUri(originalUrl)) {
     try {
-      
       await dbConnect();   
       // Check if the URL already exists in the database
       const urlExist = await urlModel.findOne({ originalUrl });
-    
+      const userId = req.userId;
       // If the URL exists, return the existing shortId
       if (urlExist) {
         const shortId = urlExist.shortId;
-        res.status(201).json(`${process.env.REDIRECT_URL}/${shortId}`);
+        const shortenedURL = `${process.env.REDIRECT_URL}/${shortId}`;
+
+        // track event
+        trackEvent("Existing URL", shortenedURL);
+
+        return res.status(201).json(shortenedURL);
       } else {
         // If the URL does not exist, generate a new shortId and save the URL to the database
         const shortId = uniqueString.generateBase62String();
         const newUrl = new urlModel({
+          userId,
           originalUrl,
           shortId,
         });
@@ -71,17 +71,20 @@ const createUrl = async (req, res) => {
         // Save the new URL to the database
         await newUrl.save();
 
+        // track event
+        trackEvent("New URL shortened", originalUrl);
+
         // Send the newly created short URL to the client
-        res.status(201).json(`${process.env.REDIRECT_URL}/${shortId}`);
+        return res.status(201).json(`${process.env.REDIRECT_URL}/${shortId}`);
       }
     } catch (error) {
       // Handle any errors that occur during the process
       console.log(error);
-      res.status(500).json({ message: "Internal Server Error" });
+      return res.status(500).json({ message: "Internal Server Error" });
     }
   } else {
     // If the original URL is not valid, send a 400 status
-    res.status(400).json("Please Enter a Valid URL");
+    return res.status(400).json("Please Enter a Valid URL");
   }
 };
 

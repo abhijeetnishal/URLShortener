@@ -16,9 +16,17 @@
   }
 }
 
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+body {
+  @apply bg-white text-black;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+  @apply bg-slate-900 text-white;
 }

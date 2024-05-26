@@ -1,7 +1,7 @@
 const userModel = require("../model/userSchema");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const dbConnect = require("../model/dbConnect");
+const dbConnect = require("../config/dbConnect");
 
 const signup = async (req, res) => {
   try {
@@ -34,7 +34,9 @@ const signup = async (req, res) => {
 
     // Generate JWT token for the new user
     const userObj = { id: savedUser._id };
-    const token = jwt.sign(userObj, process.env.secret, { expiresIn: "1h" });
+    const token = jwt.sign(userObj, process.env.JWT_SECRET_KEY, {
+      expiresIn: "1h",
+    });
 
     return res.status(200).json({
       message: "User registered successfully",
@@ -62,7 +64,7 @@ const login = async (req, res) => {
 
     // Check if user exists
     if (!user) {
-      return res.status(401).json({ message: "User not found" });
+      return res.status(404).json({ message: "User not found" });
     }
 
     // Check if password is correct
@@ -73,7 +75,9 @@ const login = async (req, res) => {
 
     // Generate JWT token for the user
     const userObj = { id: user._id };
-    const token = jwt.sign(userObj, process.env.secret, { expiresIn: "1h" });
+    const token = jwt.sign(userObj, process.env.JWT_SECRET_KEY, {
+      expiresIn: "1h",
+    });
 
     return res.status(200).json({
       message: "User logged in successfully",
