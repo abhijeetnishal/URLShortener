@@ -52,7 +52,7 @@ const createUrl = async (req, res) => {
   if (validUrl.isUri(originalUrl)) {
     try {
       
-
+      await dbConnect();   
       // Check if the URL already exists in the database
       const urlExist = await urlModel.findOne({ originalUrl });
     
