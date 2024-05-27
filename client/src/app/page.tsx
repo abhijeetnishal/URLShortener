@@ -8,50 +8,48 @@ import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+
 export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [responseUrl, setResponseUrl] = useState("");
   const [message, setMessage] = useState(false);
 
-  
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const data = new FormData(event.currentTarget);
-    
-      //validating the given url
 
-      const givenUrl = data.get("originalUrl");
-      
-      if (givenUrl) {
-        try{
+    //validating the given url
+    const givenUrl = data.get("originalUrl");
 
-            setIsSubmitting(true);
-            setResponseUrl("");
-      
-            const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/`, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ originalUrl: data.get("originalUrl") }),
-            });
+    if (givenUrl) {
+      try {
+        setIsSubmitting(true);
+        setResponseUrl("");
 
-      if (response.status == 429) {
-        toast.error("Too Many Requests. Please try again later.");
+        const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ originalUrl: data.get("originalUrl") }),
+        });
+
+        if (response.status == 429) {
+          toast.error("Too Many Requests. Please try again later.");
+        } else if (response.status === 400) {
+          toast.error("Invalid URL");
+        }
+
+        // Assuming response is JSON
+        const responseData = await response?.json();
+        setResponseUrl(responseData);
+      } catch (error) {
+        console.log("error :", error);
+      } finally {
+        setIsSubmitting(false);
       }
-      
-            // Assuming response is JSON
-            const responseData = await response?.json();
-            setResponseUrl(responseData);
-          } catch (error) {
-            console.log("error :", error);
-          } finally {
-            setIsSubmitting(false);
-          }
-      
-  }
-
+    }
   }
 
   return (
@@ -141,8 +139,7 @@ export default function Home() {
             </div>
           </div>
         )}
-        
-    </main>
+      </main>
     </>
   );
 }
