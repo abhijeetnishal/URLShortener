@@ -18,30 +18,37 @@ export default function Home() {
     event.preventDefault();
 
     const data = new FormData(event.currentTarget);
-    try {
-      setIsSubmitting(true);
-      setResponseUrl("");
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ originalUrl: data.get("originalUrl") }),
-      });
+    //validating the given url
+    const givenUrl = data.get("originalUrl");
 
-      if (response.status == 429) {
-        toast.error("Too Many Requests. Please try again later.");
+    if (givenUrl) {
+      try {
+        setIsSubmitting(true);
+        setResponseUrl("");
+
+        const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ originalUrl: data.get("originalUrl") }),
+        });
+
+        if (response.status == 429) {
+          toast.error("Too Many Requests. Please try again later.");
+        } else if (response.status === 400) {
+          toast.error("Invalid URL");
+        }
+
+        // Assuming response is JSON
+        const responseData = await response?.json();
+        setResponseUrl(responseData);
+      } catch (error) {
+        console.log("error :", error);
+      } finally {
+        setIsSubmitting(false);
       }
-
-      // Assuming response is JSON
-      const responseData = await response.json();
-
-      setResponseUrl(responseData);
-    } catch (error) {
-      console.log("error :", error);
-    } finally {
-      setIsSubmitting(false);
     }
   }
 

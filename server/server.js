@@ -1,6 +1,5 @@
 //import express module
 const express = require("express");
-
 const authRouter = require("./routes/auth");
 const urlRouter = require("./routes/url");
 const cors = require("cors");
@@ -27,6 +26,7 @@ const corsOptions = {
   preflightContinue: false,
   optionsSuccessStatus: 200,
 };
+
 
 // This will allow the user in the frontend to consume the APIs that you have created without any problem.
 app.use(cors(corsOptions));

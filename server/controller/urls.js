@@ -2,10 +2,9 @@ const urlModel = require("../model/urlSchema");
 const validUrl = require("valid-url");
 const uniqueString = require("../utils/utils");
 const dbConnect = require("../config/dbConnect");
-const dotenv = require("dotenv");
 const trackEvent = require("../config/mixpanel");
 
-dotenv.config();
+require("dotenv").config();
 
 const getSpecificUrl = async (req, res) => {
   try {
@@ -23,7 +22,7 @@ const getSpecificUrl = async (req, res) => {
     }
 
     // Retrieve the original URL from the database
-    const originalUrl = urlData.originalUrl;
+    const originalUrl = urlData?.originalUrl;
 
     // If original URL is found, redirect to it
     if (originalUrl) {
@@ -35,7 +34,7 @@ const getSpecificUrl = async (req, res) => {
   } catch (error) {
     // Handle any errors that occur during the process
     console.log(error);
-    return res.status(500).json({ message: "Internal Server Error" });
+    return res.status(500).json({ message: "Internal server error" });
   }
 };
 
@@ -47,13 +46,10 @@ const createUrl = async (req, res) => {
   // Validate the original URL
   if (validUrl.isUri(originalUrl)) {
     try {
-      // Connect to the database
       await dbConnect();
-
       // Check if the URL already exists in the database
       const urlExist = await urlModel.findOne({ originalUrl });
       const userId = req.userId;
-
       // If the URL exists, return the existing shortId
       if (urlExist) {
         const shortId = urlExist.shortId;
@@ -84,11 +80,11 @@ const createUrl = async (req, res) => {
     } catch (error) {
       // Handle any errors that occur during the process
       console.log(error);
-      return res.status(500).json({ message: "Internal Server Error" });
+      return res.status(500).json({ message: "Internal server error" });
     }
   } else {
     // If the original URL is not valid, send a 400 status
-    return res.status(400).json("Please Enter a Valid URL");
+    return res.status(400).json("URL is not valid");
   }
 };
 
