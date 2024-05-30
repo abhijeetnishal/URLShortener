@@ -1,24 +1,9 @@
 import { MoonIcon } from "@/icons/MoonIcon";
 import { SunIcon } from "@/icons/SunIcon";
 import { useTheme } from "next-themes";
-import { useEffect } from "react";
 
 const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
-
-  useEffect(() => {
-    // Check system theme
-    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    
-    // Check local storage
-    const storedTheme = localStorage.getItem("theme");
-    
-    if (storedTheme === "light" || storedTheme === "dark") {
-      setTheme(storedTheme);
-    } else {
-      setTheme(systemTheme);
-    }
-  }, [setTheme]);
 
   return (
     <div className="flex items-center space-x-3">
