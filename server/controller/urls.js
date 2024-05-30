@@ -3,6 +3,7 @@ const validUrl = require("valid-url");
 const uniqueString = require("../utils/utils");
 const dbConnect = require("../config/dbConnect");
 const trackEvent = require("../config/mixpanel");
+const verifyURL = require("../middlewares/url");
 
 require("dotenv").config();
 
@@ -60,22 +61,29 @@ const createUrl = async (req, res) => {
 
         return res.status(201).json(shortenedURL);
       } else {
-        // If the URL does not exist, generate a new shortId and save the URL to the database
-        const shortId = uniqueString.generateBase62String();
-        const newUrl = new urlModel({
-          userId,
-          originalUrl,
-          shortId,
-        });
+        // verify the URL
+        const isURLVerified = await verifyURL(originalUrl);
 
-        // Save the new URL to the database
-        await newUrl.save();
+        if (isURLVerified) {
+          // If the URL does not exist, generate a new shortId and save the URL to the database
+          const shortId = uniqueString.generateBase62String();
+          const newUrl = new urlModel({
+            userId,
+            originalUrl,
+            shortId,
+          });
 
-        // track event
-        trackEvent("New URL shortened", originalUrl);
+          // Save the new URL to the database
+          await newUrl.save();
 
-        // Send the newly created short URL to the client
-        return res.status(201).json(`${process.env.REDIRECT_URL}/${shortId}`);
+          // track event
+          trackEvent("New URL shortened", originalUrl);
+
+          // Send the newly created short URL to the client
+          return res.status(201).json(`${process.env.REDIRECT_URL}/${shortId}`);
+        } else {
+          return res.status(400).json("URL is not valid");
+        }
       }
     } catch (error) {
       // Handle any errors that occur during the process
