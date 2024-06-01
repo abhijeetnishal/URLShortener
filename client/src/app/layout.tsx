@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <link rel="icon" href="/chain.png" />
       <body className={poppins.className}>
-        <ThemeProvider attribute="class">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
           {children}
         </ThemeProvider>
