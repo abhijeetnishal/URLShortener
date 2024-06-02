@@ -23,6 +23,8 @@ const signup = async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
+   // Added checking for hashedPasswrod sometimes it throws error
+   if (!hashedPassword)  return res.status(500).json({ message: "Error hashing password" });
 
     const newUser = new userModel({
       name,
