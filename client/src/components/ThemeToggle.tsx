@@ -1,12 +1,10 @@
-"use client"; // Add this directive at the top
-
 import { MoonIcon } from "@/icons/MoonIcon";
 import { SunIcon } from "@/icons/SunIcon";
 import useThemeStore from "@/store/themeStore";
 import { useEffect, useRef, useState } from "react";
 
 const ThemeToggle = () => {
-  const { theme, setTheme, toggleTheme } = useThemeStore();
+  const { theme, toggleTheme } = useThemeStore();
   const themeContainerRef = useRef<HTMLDivElement>(null);
 
   const [sunIconFill, setSunIconFill] = useState<string>("#FFD700");

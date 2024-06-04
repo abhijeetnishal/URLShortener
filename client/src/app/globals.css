@@ -22,6 +22,6 @@
   --tog: 29, 78, 216;
   --togb: 55, 65, 81;
   --notf: 0, 0, 0;
-  
+
   background: rgba(var(--background));
 }
