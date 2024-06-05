@@ -8,7 +8,7 @@ const three = () => {
             <div className="md:w-7/12  flex flex-col p-[8vw] gap-11">
                 <p className="text-3xl md:text-4xl lg:text-4xl font-medium tracking-wide">Enhanced Analytics and Tracking (Coming Soon...)</p>
                 <p className="text-xl lg:text-2xl">Track your link analytics and get a profile of how they perform. Get click activity, user geographical location and referral managemnet.</p>
-                <div className="md:flex flex-row ps-12 gap-[9vw] ">
+                <div className="md:flex flex-row ps-5 gap-[9vw] ">
                     <ul style={{ listStyleType: 'disc' }} className="text-xl lg:text-2xl leading-10">
                         <li className="p-2">Event Tracking</li>
                         <li className="p-2">A/B Testing</li>

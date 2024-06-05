@@ -15,10 +15,10 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="flex w-screen border-b-2">
-      <div className="flex left md:w-1/4 justify-start items-center p-5">
+    <nav className="flex w-full border-b-2 p-5 justify-between items-center">
+      <div className="flex items-center">
         <Link href="/home">
-          <div className="imgCnt md:w-[190%]">
+          <div className="imgCnt w-[60%] md:w-[90%]">
             <Image src={UrlLogo} alt="logo" />
           </div>
         </Link>
@@ -26,7 +26,7 @@ const Navbar = () => {
 
       {isClient && (
         <>
-          <div className="hidden lg:flex space-x-4 center w-1/2 justify-center items-center gap-20 text-lg">
+          <div className="hidden lg:flex space-x-4 justify-center items-center gap-20 text-lg flex-grow">
             <Link href="/home">
               <div className="navOption">Home</div>
             </Link>
@@ -40,17 +40,19 @@ const Navbar = () => {
               <div className="navOption">Contact</div>
             </Link>
           </div>
-          <div className="hidden lg:flex space-x-4 right w-1/4 justify-center items-center gap-4 text-lg">
+
+          <div className="hidden lg:flex space-x-4 items-center text-lg">
             <Link href="/auth/login">
-              <div className="authOption">Sign in</div>
+              <div className="authOption px-4 py-2 text-blue-900 rounded-[20px] hover:bg-blue-900 hover:text-white">Sign in</div>
             </Link>
             <Link href="/auth/signup">
-              <div className="authOption bg-[#2C4E80] p-[15px] rounded-[20px] text-white">Sign Up</div>
+              <div className="authOption bg-[#2C4E80] px-4 py-2 rounded-[20px] text-white">Sign Up</div>
             </Link>
           </div>
-          <div>
-            <button className="w-3/4 flex justify-end items-center group lg:hidden p-9">
-              <Image src={Hamburger} alt="menu" className="w-[30px]" />
+
+          <div className='w-[10%] lg:hidden'>
+            <button className="flex justify-end items-center group lg:hidden">
+              <Image src={Hamburger} alt="menu" className="w-[80%] right-1" />
               <div className="w-screen pb-10 bg-white absolute -top-full group-focus:top-0 right-0 duration-150 flex flex-col space-y-3 justify-end">
                 <button className="px-10 py-8 relative ml-auto">
                   <div className="w-6 h-1 rotate-45 absolute bg-black"></div>

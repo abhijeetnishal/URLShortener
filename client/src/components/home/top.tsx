@@ -7,6 +7,7 @@ import Home from '@/app/page'
 import { useState, FormEvent } from 'react'
 import toast from "react-hot-toast";
 import { log } from 'console'
+import './top.css';
 
 const one = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -50,7 +51,7 @@ const one = () => {
     }
 
     return (
-        <div className="w-screen flex flex-col-reverse md:flex-row">
+        <div className="w-full flex flex-col-reverse md:flex-row">
             <div className=" md:w-7/12 flex flex-col p-[5vw] gap-6">
                 <p className="text-4xl md:text-5xl lg:text-7xl"><span className="text-[#2C4E80]">Shorten</span> your Links</p>
                 <p className="text-4xl md:text-5xl lg:text-7xl">Boost <span className="text-[#2C4E80]">your</span> reach</p>
@@ -58,8 +59,8 @@ const one = () => {
                 <p className="text-lg md:text-2xl">Our URL shortner helps you create custom, branded links that are easy to share and track. Get started for free today!</p>
 
                 <form className="md:flex gap-4 align-center items-center" onSubmit={onSubmit}>
-                    <input type="text" name='originalUrl' placeholder='Enter the link' className="w-full md:w-[39vw] p-3 h-[8vh]  rounded-[20px] text-black flex justify-center items-center border-[#2C4E80] border-4 " />
-                    <button type="submit" className='w-full md:w-max mt-2 md:mt-0 text-white p-3 rounded-[20px] h-[8vh] bg-[#2e4e82] text-lg' disabled={isSubmitting} >
+                    <input type="text" id="centered-placeholder" name='originalUrl' placeholder='Enter the link' className="w-full md:text-left md:w-[60%] p-3 rounded-[20px] text-black flex justify-center items-center border-[#2C4E80] border-4 " />
+                    <button type="submit" className='w-full md:w-[30%] mt-2 md:mt-0 text-white p-3 rounded-[20px] bg-[#2e4e82] text-lg border-4 border-[#2C4E80]' disabled={isSubmitting} >
                         {isSubmitting ? 'Generating...' : 'Generate Link'}
                     </button>
                 </form>
@@ -69,12 +70,16 @@ const one = () => {
                     </div>
                 )}
                 <div className="flex gap-4 align-center items-center">
-                    <div className="authOption w-max p-3 h-[6vh] bg-[#2C4E80] rounded-[20px] text-white flex justify-center items-center font-bold">
-                        <span>Get started for free</span>
-                    </div>
-                    <div className="text-lg text-[#2C4E80]">
-                        Learn More
-                    </div>
+                    <Link href="/auth/signup">
+                        <div className="authOption w-max p-3 h-[6vh] bg-[#2C4E80] rounded-[20px] text-white flex justify-center items-center font-bold">
+                            <span>Get started for free</span>
+                        </div>
+                    </Link>
+                    <Link href="/auth/signup">
+                        <div className="text-lg text-[#2C4E80]">
+                            Learn More
+                        </div>
+                    </Link>
                 </div>
             </div>
 

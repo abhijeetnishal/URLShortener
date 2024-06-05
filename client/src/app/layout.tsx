@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "ShortURL",
   description: "Short URLs, Custom Links and Analytics",
   icons: {
-    icon: "/chain.png",
+    icon: "/UrlLogo.svg",
   },
 };
 

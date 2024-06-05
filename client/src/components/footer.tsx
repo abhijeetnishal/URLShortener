@@ -5,12 +5,12 @@ import Link from 'next/link'
 
 const footer = () => {
     return (
-        <footer className="flex flex-start md:flex-start w-screen bg-[#ebebeb]">
-            <div className=" flex flex-col gap-6 lg:w-1/3 h-[40vh]  items-left p-[10vh]">
-                <Image className='w-min h-min' src={FooterLogo} alt="" />
-                <p className="text-[#7c91af] md:text-xl sm:text-2xl xs:text-2xl">© 2024 All rights reserved</p>
+        <footer className="flex flex-start md:flex-start w-full bg-[#ebebeb]">
+            <div className=" flex flex-col md:gap-6 lg:w-1/3  items-left ps-5">
+                <Image className='lg:w-min lg:h-min md:w-[60%] w-[60%] h-[60%]' src={FooterLogo} alt="" />
+                <p className="text-[#7c91af] text-xl md:text-xl mb-4">© 2024 All rights reserved</p>
             </div>
-            <div className="hidden md:flex text-lg  w-2/3 h-[40vh] leading-10 md:justify-center md:items-center gap-20">
+            <div className="hidden md:flex text-lg  w-2/3  md:mt-10 leading-10 md:justify-center md:items-start md:gap-10 lg:gap-20">
                 <div>
                     <div className="text-2xl text-[#7c91af]">Engagement</div>
                     <Link href="/auth/signup">
