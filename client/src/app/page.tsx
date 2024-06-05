@@ -1,3 +1,4 @@
+// pages/index.js or pages/home.js
 "use client";
 import HomePage from '@/components/home/page'
 
