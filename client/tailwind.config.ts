@@ -7,7 +7,6 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
-  darkMode: "class",
   theme: {
     extend: {
       backgroundImage: {
@@ -15,6 +14,15 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        background: "rgba(--var(--background))",
+        nt: "rgba(var(--nt))",
+        inv: "rgba(var(--inv))",
+        ninv: "rgba(var(--ninv))",
+        tog: "rgba(var(--tog))",
+        togb: "rgba(var(--togb))",
+        notf: "rgba(var(--notf))"
+      }
     },
   },
   plugins: [],
