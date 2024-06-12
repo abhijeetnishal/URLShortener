@@ -22,6 +22,9 @@ const config: Config = {
         tog: "rgba(var(--tog))",
         togb: "rgba(var(--togb))",
         notf: "rgba(var(--notf))"
+      },
+      screens: {
+        'xxl': '1200px'
       }
     },
   },

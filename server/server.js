@@ -37,7 +37,7 @@ app.disable("x-powered-by");
 app.set("trust proxy", true);
 
 //get request when server is live
-app.get("", (req, res) => {
+app.get("/", (req, res) => {
   res.status(200).json("Server is Live");
 });
 
