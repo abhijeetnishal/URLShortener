@@ -3,25 +3,34 @@
 @tailwind utilities;
 
 .light {
-  --background: 245, 245, 245;
-  --nt: 245, 245, 245;
-  --inv: 0, 0, 0;
-  --ninv: 245, 245, 245;
-  --tog: 156, 163, 175;
-  --togb: 229, 231, 235;
-  --notf: 75, 85, 99;
-
-  background: rgba(var(--background));
+  --background:linear-gradient(135deg, #413F44, #010101);
+  --primary: #1C1B1D;
+  --secondary:#333;
+  --color:white;
+  --text:rgb(182,189,190);
 }
 
-.dark {
-  --background: 15, 23, 42;
-  --nt: 30, 41, 59;
-  --inv: 245, 245, 245;
-  --ninv: 0, 0, 0;
-  --tog: 29, 78, 216;
-  --togb: 55, 65, 81;
-  --notf: 0, 0, 0;
+:root{
+  --background: linear-gradient(268deg, rgb(220, 235, 245), rgb(248, 254, 253));
+  --primary:rgb(220, 235, 245);
+  --secondary:white;
+  --color:black;
+  --text:rgb(77,84,84)
+}
 
-  background: rgba(var(--background));
+*, ::before, ::after{
+  box-sizing: unset;
+  border-width: 0;
+  border-style: unset;}
+body{
+  background:var(--background);
+  color:var(--color);
+  font-family: sans-serif;
+  margin: 0;
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  flex-direction: column;
+  justify-content: space-between;
 }

@@ -21,10 +21,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <link rel="icon" href="/chain.png" />
-      <body className={poppins.className}>
-        <Navbar />
+      <body className="">
         {children}
-        <Analytics />
       </body>
     </html>
   );

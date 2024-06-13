@@ -1,0 +1,300 @@
+.container {
+    max-width: 98%;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+}
+h1, h2 {
+    font-size:3.5rem;
+}
+input[type="url"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--secondary);
+    border-radius: 5px;
+    background: var(--background);
+    color: var(--color);
+    font-size: 16px;
+    margin-bottom: 20px;
+    border: 0.18rem solid rgb(26,121,190);
+    border-radius: 0.6rem;
+    position: relative;
+    z-index: 2;
+}
+#mobile_nav,#menu{display: none;}
+
+.button {
+    background-color: #007bff;
+    color: var(--color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.blue{color:rgb(26,121,190);}
+.dynamic_color{color:var(--text)}
+.button:hover {
+    background-color: #0062cc;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.feature {
+    background-color:#333;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 5px;
+    width: 200px;
+    text-align: left;
+}
+.feature{filter: invert(1);color: white;}
+.light .feature{filter: invert(0);}
+.feature i {
+    margin-right: 10px;
+}
+.wrap-check-14 input[type="checkbox"] {
+    visibility: hidden;
+    display: none;
+  }
+  .wrap-check-14 { padding-top: 0.8rem; }
+  .wrap-check-14 *,
+  .wrap-check-14 ::after,
+  .wrap-check-14 ::before {
+    box-sizing: border-box;
+  }
+
+  /* The switch - the box around the slider */
+  .wrap-check-14 .switch {
+    --width-of-switch: 3.5em;
+    --height-of-switch: 2em;
+    /* size of sliding icon -- sun and moon */
+    --size-of-icon: 1.4em;
+    /* it is like a inline-padding of switch */
+    --slider-offset: 0.3em;
+    position: relative;
+    width: var(--width-of-switch);
+    height: var(--height-of-switch);
+    display: inline-block;
+  }
+
+  /* The slider */
+  .wrap-check-14 .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: 
+#f4f4f5;
+    transition: .4s;
+    border-radius: 30px;
+  }
+
+  .wrap-check-14 .slider:before {
+    position: absolute;
+    content: "";
+    height: var(--size-of-icon,1.4em);
+    width: var(--size-of-icon,1.4em);
+    border-radius: 20px;
+    left: var(--slider-offset,0.3em);
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(40deg,#ff0080,#ff8c00 70%);
+    ;
+   transition: .4s;
+  }
+
+  .wrap-check-14 input:checked + .slider {
+    background-color: 
+#303136;
+  }
+
+  .wrap-check-14 input:checked + .slider:before {
+    left: calc(100% - (var(--size-of-icon,1.4em) + var(--slider-offset,0.3em)));
+    background: 
+#303136;
+    /* change the value of second inset in box-shadow to change the angle and direction of the moon  */
+    box-shadow: inset -3px -2px 5px -2px 
+#8983f7, inset -10px -4px 0 0 
+#a3dafb;
+  }
+.logo a {
+    color: var(--color);
+    text-decoration: none;
+    font-size: 2rem;
+}
+
+.logo a:hover {
+    text-decoration: underline;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 14px;
+}
+
+.nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.nav a {
+    color: var(--color);
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+.cta {
+    display: flex;
+    justify-content:center;
+    gap:1rem;
+}
+
+.cta button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cta .log-in {
+    background-color: rgb(26,121,190);
+    border: 0.18rem solid rgb(26,121,190);
+    color: var(--color);
+    font-size: 900;
+}
+
+.cta .log-in:hover {
+    border: 0.18rem solid rgb(26,121,190);
+    background-color: var(--primary);
+}
+
+.cta .sign-up {
+    background-color: var(--primary);
+    position: relative;
+    z-index: 2;
+    border: 0.18rem solid rgb(26,121,190);
+    border-radius: 0.6rem;
+    color: var(--color);
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+.cta .sign-up:hover {
+    background-color: rgb(26,121,190);
+}
+#design{
+    width: auto;
+    height: auto;
+    position: absolute;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding-left: 1rem;
+}
+#ball_container1{
+    position: relative;
+    height: 5rem;
+    width: 5rem;
+}
+#ball_container1 .ball1,#ball_container1 .border{
+    width: 100%;
+    height: 100%;
+}
+.ball1::before,.ball1::after,#ball_container1::before,#ball_container1::after{
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    background-color: rgb(26,121,190);
+}
+.ball1::before{top: 0%;right: 0%;}
+.ball1::after{bottom: 0%;right: 0%;}
+#ball_container1::before{ bottom:0% ; left: 0%;}
+#ball_container1::after{ top:0% ; left: 0%;}
+.ball1::before,.ball1::after,#ball_container1::before,#ball_container1::after{content: "";}
+#ball_container1 .border::before{content: ""; position: absolute; height: 0.4rem; width: 94%; background-color: rgb(26,121,190); top: 7.2%; left: 2%;}
+#ball_container1 .border::after{content: ''; position: absolute; height: 94%; width: 0.4rem; top: 2%; left: 7.2%; background: rgb(26,121,190);}
+.line1{height: 7rem;width: 0.4rem;background-color: rgb(26,121,190);transform: translateX(0.4rem) translateY(-3rem);}
+.line2{height: 0.4rem;width: 75%;background-color: rgb(26,121,190);transform: translateX(00.4rem) translateY(-3rem);}
+#title_container{display:flex}
+#title_container .title{width: 75%;}
+#title_container .design{display: flex;flex-direction: column;position: relative;width: 25%;}
+.design .line{height: 5rem;width: 0.4rem;background-color: rgb(26,121,190);transform: translateY(-3rem);}
+.design .box{padding: 1rem;width: 3rem;background-color: var(--primary);position: relative;z-index: 2;
+border: 0.3rem solid rgb(26,121,190);
+border-radius: 0.6rem;
+transform: translateX(-45%) translateY(-3rem);}
+.design #ball_container1{width: 3rem;height: 3rem;}
+.design .ball1::before,.design .ball1::after,.design #ball_container1::before,.design #ball_container1::after{width: 15px;height: 15px;}
+.design .border::before{height: 0.3rem;top: 7.9%;}
+.design .border::after{width: 0.3rem;left: 8%;}
+.line5{height: 4rem; width: 0.4rem; background-color: rgb(26,121,190); position: relative;  left: 75%; top: -3rem;}
+#input_design_container{position: relative;width: 100%;display: flex;justify-content: center;gap:2rem;}
+#input_design_container .input{width: 75%;position: relative;}
+#input_design_container .button_con{    width: 25%; display: flex; justify-content: flex-start; align-items: center;margin-top: -1.3rem;}
+.line6{ height: 0.4rem; width: 4rem; background-color: rgb(26,121,190); position: absolute; right: -1.8rem;top: -3.2rem;}
+.line7{    height: 3.5rem;  width: 0.4rem; background-color: rgb(26,121,190);position: absolute; right: 2rem;top: -3.2rem;}
+.singup_line1{height: 0.4rem;  width: 90%;position: absolute; background-color: rgb(26,121,190); top: 42%;right:6%}
+.singup_line2{height: 15rem; position: absolute;  width: 0.4rem;  background: rgb(26,121,190);right: 6%; bottom: 6rem;}
+@media (max-width:900px){
+.nav{position: relative;}
+.links,.cta{
+    display: none;
+}
+#menu{display: flex;transition: 0.3s ease-in;height: 2rem;padding:0rem 0.5rem;border: 0.18rem solid rgb(26,121,190);position: relative;background-color: var(--primary);z-index: 5;justify-content: center;align-items: center;margin-right: -0.2rem;border-radius: 0.6rem;}
+#menu .line{position: relative;display: flex;}
+#menu .line,#menu .line::before,#menu .line::after{height: 0.1rem;width: 1rem;background-color: var(--color);}
+#menu .line::before,#menu .line::after{content: "";position: absolute;} #menu .line::before{top: 6px;} #menu .line::after{top: -6px;}
+#mobile_nav{
+    position: absolute;
+    display: flex;
+    height: 100vh;
+    width: 60%;
+    top:0%;
+    background-color: var(--primary);
+    transition: 0.4s ease-in;
+    z-index: 3;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    right:0%;
+}
+#mobile_nav p{
+    position: absolute;
+    top:5%;
+    right:0%;
+    left: 0%;
+    font-size: 2rem;
+}
+#mobile_nav a{
+    text-decoration: none;
+    color: var(--color);
+    border-bottom: 0.1rem solid var(--color);
+    padding: 1rem;
+}
+.active{transform: translateY(0%);}
+.hidden{transform: translateY(-100%);}
+#menu.close .line{background-color: transparent;}
+#menu.close .line::before{rotate: -45deg; top: 0px;}
+#menu.close .line::after{rotate: 45deg;top:0px;}
+}
+@media (max-width:600px) {
+    h1,h2{font-size: 2rem;}
+}
