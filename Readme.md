@@ -5,7 +5,7 @@
 <!------------------------------------------------------------------------ABOUT US------------------------------------------------------------------------------>
 <h2>⚡ About Us: </h2>
 This project is a URL Shortener application that allows users to enter a long URL, which is then shortened to a much shorter URL that can be easily shared. The shortened URL is redirectable to the original long URL.
-https://urlsrtner.vercel.app/
+
 <hr>
 
 <div>
