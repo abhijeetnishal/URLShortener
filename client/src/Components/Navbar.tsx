@@ -1,8 +1,9 @@
 "use client";
 import Link from "next/link";
-import { UrlLogo } from "@/icons/UrlLogo";
 import { Hamburger } from "@/icons/Hamburger";
 import { useState } from "react";
+import Image from "next/image";
+import logo from "./../../public/chain.png";
 
 const Navbar = () => {
   const [hamburgerClick, setHamburgerClick] = useState(false);
@@ -11,8 +12,9 @@ const Navbar = () => {
     <nav className="flex w-full border-b-2 p-5 justify-between items-center">
       <div className="flex items-center">
         <Link href="/">
-          <div className="imgCnt w-[60%] md:w-[90%]">
-            <UrlLogo height="" width="" className="w-[60%] h-auto" />
+          <div className="flex flex-row items-center">
+            <Image alt="logo" className="w-6 h-6" src={logo} />
+            <p className="ml-3 text-xl font-medium">Short.url</p>
           </div>
         </Link>
       </div>

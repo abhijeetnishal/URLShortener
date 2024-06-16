@@ -1,49 +1,16 @@
-import { FooterLogo } from '@/icons/FooterLogo'
-import Link from 'next/link'
+import Image from "next/image";
+import logo from "./../../public/chain.png";
 
 const Footer = () => {
-    return (
-        <footer className="flex flex-start md:flex-start w-full bg-[#ebebeb]">
-            <div className=" flex flex-col md:pr-10 lg:pr-40 items-left ps-5">
-                <FooterLogo className="w-full h-auto"/> 
-                <p className="text-[#7c91af] text-xl md:text-xl mb-4">© 2024 All rights reserved</p>
-            </div>
-            <div className="hidden md:flex text-lg  w-2/3  md:mt-10 leading-10 md:justify-end md:items-start md:gap-10 lg:gap-20">
-                <div>
-                    <div className="text-2xl text-[#7c91af]">Engagement</div>
-                    <Link href="/auth/signup">
-                        <div>QR Codes</div>
-                    </Link>
-                    <Link href="/auth/signup">
-                        <div>Dynamic Links</div>
-                    </Link>
-                    <Link href="/auth/signup">
-                        <div>Customised Laing Pages</div>
-                    </Link>
-                </div>
-                <div>
-                    <div className="text-2xl text-[#7c91af]">Analytics</div>
-                    <Link href="/auth/signup">
-                        <div>Link Analytics</div>
-                    </Link>
-                    <Link href="/auth/signup">
-                        <div>Geolocation Tracking</div>
-                    </Link>
-                </div>
-                <div>
-                    <div className="text-2xl text-[#7c91af]">About</div>
-                    <Link href="/about">
-                        <div>About this project</div>
-                    </Link>
-                    <div>Terms & Conditions</div>
-                    <div>Privacy Policy</div>
-                    <Link href="/contact">
-                        <div>Contact</div>
-                    </Link>
-                </div>
-            </div>
-        </footer>
-    )
-}
+  return (
+    <footer className="w-full flex flex-col items-center justify-center py-2 bg-[#ebebeb]">
+      {/* <div className="flex flex-row items-center mb-3">
+        <Image alt="logo" className="w-5 h-5" src={logo} />
+        <p className="ml-2 text-xl font-medium">Short.url</p>
+      </div> */}
+      <p className="text-[#7c91af] text-lg mr-4">© 2024 All rights reserved</p>
+    </footer>
+  );
+};
 
-export default Footer
+export default Footer;

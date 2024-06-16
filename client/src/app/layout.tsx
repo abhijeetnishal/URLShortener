@@ -7,10 +7,10 @@ import Footer from "@/Components/Footer";
 const poppins = Poppins({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
-  title: "ShortURL",
-  description: "Short URLs, Custom Links and Analytics",
+  title: "Short.URL",
+  description: "Short URLs",
   icons: {
-    
+    icon: "/chain.png",
   },
 };
 
