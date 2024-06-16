@@ -1,148 +1,177 @@
-// pages/index.js or pages/home.js
 "use client";
-import { CopyButtonIcon } from "@/icons/CopyButtonIcon";
-import GmailIcon from "../icons/GmailIcon";
-import LinkedInIcon from "../icons/LinkedInIcon";
-import WhatsAppIcon from "../icons/WhatsAppIcon";
-import Image from "next/image";
+import { HomeTop } from "@/icons/Working";
 import Link from "next/link";
-import { FormEvent, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
-import useThemeStore from "@/store/themeStore";
+import { useState, FormEvent } from "react";
+import toast from "react-hot-toast";
+import { HomeMid } from "@/icons/Texting";
+import { HomeBottom } from "@/icons/Searching";
 
 export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [responseUrl, setResponseUrl] = useState("");
   const [message, setMessage] = useState(false);
-
-  const { theme } = useThemeStore();
-
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const data = new FormData(event.currentTarget);
+    const formData = new FormData(event.currentTarget);
+    const originalUrl = formData.get("originalUrl");
 
-    //validating the given url
-    const givenUrl = data.get("originalUrl");
+    try {
+      setIsSubmitting(true);
+      setResponseUrl("");
 
-    if (givenUrl) {
-      try {
-        setIsSubmitting(true);
-        setResponseUrl("");
+      const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ originalUrl }),
+      });
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ originalUrl: data.get("originalUrl") }),
-        });
-
-        if (response.status == 429) {
-          toast.error("Too Many Requests. Please try again later.");
-        } else if (response.status === 400) {
-          toast.error("Invalid URL");
-        }
-
-        // Assuming response is JSON
-        const responseData = await response?.json();
-        setResponseUrl(responseData);
-      } catch (error) {
-        console.log("error :", error);
-      } finally {
-        setIsSubmitting(false);
+      if (response.status == 429) {
+        toast.error("Too Many Requests. Please try again later.");
+        return;
       }
+
+      const responseData = await response.json();
+      setResponseUrl(responseData.shortenedUrl || "");
+    } catch (error) {
+      console.log("error :", error);
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
   return (
-    <div className={`${theme}`}>
-      <Toaster position="top-center" />
-      <main className="flex min-h-screen flex-col items-center justify-center space-y-4 max-w-6xl mx-auto text-inv">
-        <Image src={"/http.png"} alt="http" height={"50"} width={"100"} />
-        <h3 className="font-semibold text-xl mb-2">Tired of big URLs ?</h3>
-        <h1 className="font-bold text-3xl sm:text-4xl">
-          Make Your <span className="text-blue-500">URL</span> Short
-        </h1>
+    <div>
+      <div className="w-full flex flex-col-reverse md:flex-row">
+        <div className=" md:w-7/12 flex flex-col p-[5vw] gap-6">
+          <p className="text-4xl md:text-5xl lg:text-7xl">
+            <span className="text-[#2C4E80]">Shorten</span> your Links
+          </p>
+          <p className="text-4xl md:text-5xl lg:text-7xl">
+            Boost <span className="text-[#2C4E80]">your</span> reach
+          </p>
+          <p className="text-lg md:text-2xl">
+            Our URL shortner helps you create custom, branded links that are
+            easy to share and track. Get started for free today!
+          </p>
 
-        <form onSubmit={onSubmit}>
-          <input
-            type="url"
-            name="originalUrl"
-            id=""
-            className="rounded-l-full py-2 px-4 w-[65vw] sm:w-80 border-2 focus:outline-none bg-ninv"
-            required
-            placeholder="Enter your long link here"
-          />
-          <button
-            type="submit"
-            className="bg-blue-500 text-white py-2 px-2 -translate-x-2 rounded-r-full border-2"
-            disabled={isSubmitting}
+          <form
+            className="md:flex gap-4 align-center items-center"
+            onSubmit={onSubmit}
           >
-            {isSubmitting ? "Shortening..." : "Shorten It!"}
-          </button>
-        </form>
+            <input
+              type="text"
+              id="centered-placeholder"
+              name="originalUrl"
+              placeholder="Enter the link"
+              className="w-full md:text-left md:w-[60%] p-3 rounded-[20px] text-black text-center flex justify-center items-center border-[#2C4E80] border-4 "
+            />
+            <button
+              type="submit"
+              className="w-full md:w-[30%] mt-2 md:mt-0 text-white p-3 rounded-[20px] bg-[#2e4e82] text-lg border-4 border-[#2C4E80]"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Generating..." : "Generate Link"}
+            </button>
+          </form>
 
-        {responseUrl.length > 0 && (
-          <div className="mt-4">
-            <p className="flex justify-center font-semibold mb-3">
-              Shortened URL
-            </p>
-            <div className="flex justify-center text-white py-2 -translate-x-2 px-3 border bg-blue-400 border-blue-600 rounded-full">
-              <Link
-                href={responseUrl}
-                target="_blank"
-                className="white underline mr-4"
-              >
-                {responseUrl}
-              </Link>
-              <button
-                onClick={() => {
-                  navigator.clipboard.writeText(responseUrl);
-                  setMessage(true);
-                  setTimeout(() => {
-                    setMessage(false);
-                  }, 1000);
-                }}
-              >
-                <CopyButtonIcon />
-              </button>
-              {message && (
-                <div className="absolute left-56 top-12">
-                  <div className="ml-2 px-1 text-white">Copied!</div>
-                </div>
-              )}
+          {responseUrl && (
+            <div className="mt-4">
+              <p className="text-lg">
+                Shortened URL:{" "}
+                <a href={responseUrl} className="text-blue-500">
+                  {responseUrl}
+                </a>
+              </p>
             </div>
-            <div className="flex justify-center space-x-4 mt-4">
-              <a
-                href={`https://wa.me/?text=${encodeURIComponent(responseUrl)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <WhatsAppIcon /> {/* Added WhatsApp share button */}
-              </a>
-              <a
-                href={`mailto:?subject=Check this URL&body=${encodeURIComponent(
-                  responseUrl
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <GmailIcon /> {/* Added Gmail share button */}
-              </a>
-              <a
-                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-                  responseUrl
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <LinkedInIcon /> {/* Added LinkedIn share button */}
-              </a>
-            </div>
+          )}
+
+          <div className="flex gap-4 align-center items-center">
+            <Link href="/auth/signup">
+              <div className="authOption w-max p-3 h-[6vh] bg-[#2C4E80] rounded-[20px] text-white flex justify-center items-center font-bold">
+                <span>Get started for free</span>
+              </div>
+            </Link>
+            <Link href="/about">
+              <div className="text-lg text-[#2C4E80]">Learn More</div>
+            </Link>
           </div>
-        )}
-      </main>
+        </div>
+
+        <div className="md:w-5/12 pt-10 md:p-0 flex justify-center items-center">
+          <div className="imgCnt w-[80%]">
+            <HomeTop height="" width="" className="w-full h-auto" />
+          </div>
+        </div>
+      </div>
+
+      <div className="flex flex-col md:flex-row w-full bg-[#ebebeb]">
+        <div className="md:w-5/12 pt-10 md:p-0 flex justify-center items-center ps-2">
+          <div className="imgCnt w-[80%]">
+            <HomeMid height="" width="" className="w-full h-auto" />
+          </div>
+        </div>
+        <div className="md:w-7/12  flex flex-col p-[7vw] gap-11 ">
+          <p className="text-3xl md:text-4xl lg:text-4xl font-medium tracking-wide">
+            Improve User Engagement
+          </p>
+          <p className="text-lg lg:text-2xl">
+            Simplifies sharing long URLs across various platforms, making it
+            easier for users to share content with friends and followers
+          </p>
+          <div className="md:flex flex-row  gap-[9vw] ps-5">
+            <ul
+              style={{ listStyleType: "disc" }}
+              className="custom-list text-lg lg:text-2xl leading-10"
+            >
+              <li className="p-2">Customized branded domain</li>
+              <li className="p-2">QR Codes</li>
+            </ul>
+            <ul
+              style={{ listStyleType: "disc" }}
+              className="text-lg lg:text-2xl leading-10"
+            >
+              <li className="p-2">Dynamic Links</li>
+              <li className="p-2">Customized Landing Pages</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex flex-col-reverse md:flex-row">
+        <div className="md:w-7/12  flex flex-col p-[8vw] gap-11">
+          <p className="text-3xl md:text-4xl lg:text-4xl font-medium tracking-wide">
+            Enhanced Analytics and Tracking (Coming Soon...)
+          </p>
+          <p className="text-lg lg:text-2xl">
+            Track your link analytics and get a profile of how they perform. Get
+            click activity, user geographical location and referral management.
+          </p>
+          <div className="md:flex flex-row ps-5 gap-[9vw] ">
+            <ul
+              style={{ listStyleType: "disc" }}
+              className="text-lg lg:text-2xl leading-10"
+            >
+              <li className="p-2">Event Tracking</li>
+              <li className="p-2">A/B Testing</li>
+            </ul>
+            <ul
+              style={{ listStyleType: "disc" }}
+              className="text-lg lg:text-2xl leading-10"
+            >
+              <li className="p-2">Cross Device Attribute</li>
+              <li className="p-2">Developer Analytics API</li>
+            </ul>
+          </div>
+        </div>
+        <div className="md:w-5/12 pt-10 md:p-0 ps-2 flex justify-center items-center">
+          <div className="imgCnt w-[80%] ">
+            <HomeBottom height="" width="" className="w-full h-auto" />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

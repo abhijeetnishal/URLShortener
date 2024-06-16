@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 
 type FormValues = {
@@ -71,8 +71,8 @@ const SignUpPage = () => {
   };
 
   return (
-    <div className="relative h-dvh mt-4 bg-gray-100 flex flex-col justify-start py-4 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
+    <div className="relative h-dvh bg-gray-100 flex flex-col justify-start py-4 sm:px-6 lg:px-8">
+      <div className="sm:mx-auto sm:w-full mt-4 sm:max-w-md">
         <h2 className="mt-2 text-center md:text-3xl text-xl font-extrabold text-gray-900">
           Sign up for an account
         </h2>

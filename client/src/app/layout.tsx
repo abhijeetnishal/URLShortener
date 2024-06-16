@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/Components/Navbar";
+import Footer from "@/Components/Footer";
+
 const poppins = Poppins({ subsets: ["latin"], weight: "400" });
-import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
-  title: "ShortURL",
-  description: "Short URLs, Custom Links and Analytics",
+  title: "Short.URL",
+  description: "Short URLs",
   icons: {
     icon: "/chain.png",
   },
@@ -15,16 +16,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <link rel="icon" href="/chain.png" />
-      <body className={poppins.className}>
+    <html lang="en" className={poppins.className}>
+      <body>
         <Navbar />
-        {children}
-        <Analytics />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
