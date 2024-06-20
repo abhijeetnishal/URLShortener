@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <link rel="icon" href="/chain.png" />
-      <body className={poppins.className}>
+      <body className={poppins.className+"h-screen overflow-y-hidden"}>
         <Navbar />
         {children}
         <Analytics />
