@@ -58,7 +58,7 @@ export default function Home() {
   return (
     <div className={`${theme}`}>
       <Toaster position="top-center" />
-      <main className="flex min-h-screen flex-col items-center justify-center space-y-4 max-w-6xl mx-auto text-inv">
+      <main className="h-[92dvh] flex flex-col items-center justify-center mx-auto text-inv">
         <Image src={"/http.png"} alt="http" height={"50"} width={"100"} />
         <h3 className="font-semibold text-xl mb-2">Tired of big URLs ?</h3>
         <h1 className="font-bold text-3xl sm:text-4xl">
@@ -109,7 +109,9 @@ export default function Home() {
               </button>
               {message && (
                 <div className="absolute left-56 top-12">
-                  <div className="ml-2 px-1 text-white">Copied!</div>
+                  <div className="ml-2 px-1 dark:text-white text-black">
+                    Copied!
+                  </div>
                 </div>
               )}
             </div>
